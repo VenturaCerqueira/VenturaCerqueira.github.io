@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --bg: #f6f7fb;
+  --bg-alt: #eef0f8;
+  --surface: #ffffff;
+  --border: #e3e6f0;
+  --text: #0f1222;
+  --muted: #5b6178;
+  --accent: #5b3df5;
+  --accent-2: #2f6bdc;
+  --accent-soft: #ece8ff;
+  --teal: #0f8a7e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0d18;
+    --bg-alt: #10132a;
+    --surface: #151935;
+    --border: #262b4d;
+    --text: #eceefa;
+    --muted: #a1a7c4;
+    --accent: #8b7bff;
+    --accent-2: #6ea0ff;
+    --accent-soft: #241f4d;
+    --teal: #3fd4c2;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0b0d18;
+  --bg-alt: #10132a;
+  --surface: #151935;
+  --border: #262b4d;
+  --text: #eceefa;
+  --muted: #a1a7c4;
+  --accent: #8b7bff;
+  --accent-2: #6ea0ff;
+  --accent-soft: #241f4d;
+  --teal: #3fd4c2;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-soft: var(--accent-soft);
+  --color-teal: var(--teal);
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 6.5rem; }
+body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+main { overflow-x: clip; }
+
+/* fundo do hero: grade sutil + brilhos */
+.hero-bg {
+  background-image:
+    radial-gradient(600px 400px at 0% 10%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 70%),
+    radial-gradient(500px 400px at 100% 90%, color-mix(in srgb, var(--teal) 12%, transparent), transparent 70%),
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: auto, auto, 48px 48px, 48px 48px;
+  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+}
+.hero-bg-fade { mask-image: linear-gradient(to bottom, black 70%, transparent); }
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.visual-card {
+  background: conic-gradient(from 210deg at 50% 50%, #5b3df5, #2f6bdc, #12a594, #f5a524, #f2706b, #8f5bd8, #5b3df5);
+}
+
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+.marquee-slow { animation-duration: 55s; animation-direction: reverse; }
+.marquee-mask { mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
+
+@keyframes float { 50% { transform: translateY(-8px); } }
+.float { animation: float 5s ease-in-out infinite; }
+
+/* ===== Revelar ao rolar (só com JS ativo) ===== */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1), border-color .3s, box-shadow .3s; }
+.js .reveal.in { opacity: 1; transform: none; }
+.js .reveal-left { transform: translateX(-36px); }
+.js .reveal-right { transform: translateX(36px); }
+.js .reveal-zoom { transform: scale(.94); }
+
+/* ===== Barra de progresso de leitura (CSS scroll-driven) ===== */
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.scroll-progress {
+  position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 50; transform-origin: left; transform: scaleX(0);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--teal));
+  animation: grow linear both; animation-timeline: scroll(root);
+}
+
+/* ===== Blobs do hero ===== */
+@keyframes blob { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-30px) scale(1.1); } 66% { transform: translate(-30px,20px) scale(.95); } }
+.blob { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: .35; animation: blob 18s ease-in-out infinite; }
+
+/* ===== Moldura girando da foto ===== */
+@property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes ang { to { --ang: 360deg; } }
+.ring { background: conic-gradient(from var(--ang), var(--accent), var(--accent-2), var(--teal), #f5a524, var(--accent)); animation: ang 6s linear infinite; }
+
+/* ===== Cursor do typewriter ===== */
+@keyframes caret { 50% { opacity: 0; } }
+.caret { margin-left: 2px; font-weight: 300; color: var(--accent); animation: caret 1s step-end infinite; -webkit-text-fill-color: var(--accent); }
+
+/* ===== Capa gerada ===== */
+@keyframes grid-move { to { background-position: 24px 24px; } }
+.gen-grid {
+  background-image: linear-gradient(rgba(255,255,255,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.35) 1px, transparent 1px);
+  background-size: 24px 24px; animation: grid-move 3s linear infinite;
+}
+
+/* ===== Links com seta ===== */
+.link-arrow span { display: inline-block; transition: transform .25s; }
+.link-arrow:hover span { transform: translateX(4px); }
+
+/* ===== Marquee pausa no hover ===== */
+.marquee-mask:hover .marquee { animation-play-state: paused; }
+
+/* ===== Ícones animados ===== */
+.ico * { transform-box: fill-box; transform-origin: center; }
+.ico { --spd: 1; }
+.group:hover .ico { --spd: 0.45; } /* acelera no hover do card */
+
+/* api: pacotes trafegando */
+@keyframes ico-dot { 0%, 100% { opacity: .2; transform: scale(.7); } 50% { opacity: 1; transform: scale(1.15); } }
+.ico-api .dot { animation: ico-dot calc(1.4s * var(--spd)) ease-in-out infinite; }
+.ico-api .d2 { animation-delay: calc(.2s * var(--spd)); }
+.ico-api .d3 { animation-delay: calc(.4s * var(--spd)); }
+
+/* automation: engrenagem */
+@keyframes ico-spin { to { transform: rotate(360deg); } }
+.ico-automation .spin { animation: ico-spin calc(6s * var(--spd)) linear infinite; }
+
+/* database: camadas */
+@keyframes ico-layer { 0%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.ico-database .layer { animation: ico-layer calc(2s * var(--spd)) ease-in-out infinite; }
+.ico-database .l2 { animation-delay: calc(.5s * var(--spd)); }
+
+/* chart: barras */
+@keyframes ico-bar { 0%, 100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
+.ico-chart .bar { transform-origin: bottom; animation: ico-bar calc(1.8s * var(--spd)) ease-in-out infinite; fill: currentColor; fill-opacity: .15; }
+.ico-chart .b2 { animation-delay: calc(.25s * var(--spd)); }
+.ico-chart .b3 { animation-delay: calc(.5s * var(--spd)); }
+
+/* design + check: traço sendo desenhado */
+@keyframes ico-draw { 0% { stroke-dashoffset: 40; } 55%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -40; } }
+.ico .stroke-draw { stroke-dasharray: 40; animation: ico-draw calc(3s * var(--spd)) ease-in-out infinite; }
+@keyframes ico-pen { 0%, 100% { transform: translate(-3px, 2px) rotate(-6deg); } 50% { transform: translate(2px, -1px) rotate(4deg); } }
+.ico-design .pen { animation: ico-pen calc(3s * var(--spd)) ease-in-out infinite; }
+
+/* compass: agulha */
+@keyframes ico-needle { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(30deg); } }
+.ico-compass .needle { animation: ico-needle calc(2.6s * var(--spd)) ease-in-out infinite; }
+
+/* pin: quique */
+@keyframes ico-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.ico-pin .bounce { animation: ico-bounce calc(1.6s * var(--spd)) ease-in-out infinite; }
+
+/* sparkles: brilhos */
+@keyframes ico-spk { 0%, 100% { transform: scale(.6) rotate(0); opacity: .45; } 50% { transform: scale(1.1) rotate(20deg); opacity: 1; } }
+.ico-sparkles .spk { animation: ico-spk calc(2.2s * var(--spd)) ease-in-out infinite; }
+.ico-sparkles .s2 { animation-delay: calc(.5s * var(--spd)); }
+.ico-sparkles .s3 { animation-delay: calc(1s * var(--spd)); }
+
+/* agents: sinal correndo nos fios + núcleo pulsando */
+@keyframes ico-wire { to { stroke-dashoffset: -16; } }
+.ico-agents .wire { stroke-dasharray: 3 5; animation: ico-wire calc(1.2s * var(--spd)) linear infinite; }
+@keyframes ico-core { 0%, 100% { transform: scale(.8); } 50% { transform: scale(1.25); } }
+.ico-agents .core { animation: ico-core calc(1.6s * var(--spd)) ease-in-out infinite; }
+
+/* bot: piscar + antena */
+@keyframes ico-blink { 0%, 44%, 52%, 100% { transform: scaleY(1); } 48% { transform: scaleY(.1); } }
+.ico-bot .eyes { animation: ico-blink calc(3.2s * var(--spd)) infinite; }
+.ico-bot .bounce { animation: ico-bounce calc(2s * var(--spd)) ease-in-out infinite; }
+@keyframes ico-ant { 0%, 100% { opacity: .3; } 50% { opacity: 1; } }
+.ico-bot .antenna { animation: ico-ant calc(1s * var(--spd)) ease-in-out infinite; }
+
+/* users: pessoa de trás surgindo */
+@keyframes ico-back { 0%, 100% { transform: translateX(-2px); opacity: .4; } 50% { transform: translateX(0); opacity: 1; } }
+.ico-users .back { animation: ico-back calc(2.4s * var(--spd)) ease-in-out infinite; }
+
+/* barra de progressão de carreira */
+@keyframes fill-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.career-fill { transform-origin: left; transform: scaleX(0); }
+.in .career-fill { animation: fill-x 1.8s .3s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes pop { 0% { transform: scale(0); } 70% { transform: scale(1.25); } 100% { transform: scale(1); } }
+.career-dot { transform: scale(0); }
+.in .career-dot { animation: pop .45s ease-out forwards; }
+
+/* borda animada do card de IA */
+.ai-border { position: relative; }
+.ai-border::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; background: conic-gradient(from var(--ang), transparent 0 60%, var(--accent), var(--teal), transparent 90%); animation: ang 5s linear infinite; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+
+/* caixa do ícone */
+.ico-box { transition: transform .3s, background-color .3s, color .3s; }
+.group:hover .ico-box { transform: translateY(-2px) rotate(-4deg); background: var(--accent); color: #fff; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ico *, .ico-box { animation: none !important; transition: none; }
+  .marquee, .float, .blob, .ring, .gen-grid, .caret, .scroll-progress { animation: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* sublinhado do hero desenhando */
+@keyframes underline { from { stroke-dashoffset: 320; } to { stroke-dashoffset: 0; } }
+.underline-draw { stroke-dasharray: 320; animation: underline 1.2s .6s ease-out both; }
+
+/* seta do botão principal */
+@keyframes nudge { 0%,100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+.arrow-nudge { display: inline-block; animation: nudge 1.6s ease-in-out infinite; }
+
+/* brilho passando no CTA */
+@keyframes shine { from { transform: translateX(-120%) skewX(-20deg); } to { transform: translateX(220%) skewX(-20deg); } }
+.cta-shine::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent); animation: shine 4.5s ease-in-out infinite; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .underline-draw, .arrow-nudge, .cta-shine::after, .ai-border::before { animation: none; }
+  .career-fill, .career-dot, .in .career-fill, .in .career-dot { animation: none; transform: none; }
+  .underline-draw { stroke-dasharray: none; }
+}
+
+/* busca e voltar ao topo */
+@keyframes fade { from { opacity: 0; } }
+@keyframes pop-in { from { opacity: 0; transform: translateY(-8px) scale(.98); } }
+@keyframes nudge-up { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+
+/* cartão "bug corrigido" do mascote */
+.pet-toast {
+  position: absolute; display: flex; align-items: center; gap: .55rem;
+  padding: .45rem .8rem .45rem .45rem; border-radius: 9999px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--teal) 45%, var(--border));
+  box-shadow: 0 10px 30px -8px color-mix(in srgb, var(--teal) 45%, transparent), 0 2px 6px rgba(0,0,0,.08);
+  white-space: nowrap; pointer-events: none;
+  animation: pet-toast 2.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.pet-toast-icon {
+  display: grid; place-items: center; width: 26px; height: 26px; border-radius: 9999px;
+  background: linear-gradient(135deg, var(--teal), #16a58f); color: #fff;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--teal) 20%, transparent);
+  animation: pet-toast-pop .5s .1s cubic-bezier(.3,1.6,.5,1) both;
+}
+.pet-toast-text { display: flex; flex-direction: column; line-height: 1.15; }
+.pet-toast-text strong { font-size: 12.5px; font-weight: 700; }
+.pet-toast-text code { font-family: ui-monospace, monospace; font-size: 10px; color: var(--muted); }
+@keyframes pet-toast {
+  0% { opacity: 0; transform: translateY(10px) scale(.7); }
+  12% { opacity: 1; transform: translateY(0) scale(1.06); }
+  20% { transform: translateY(0) scale(1); }
+  80% { opacity: 1; transform: translateY(-16px); }
+  100% { opacity: 0; transform: translateY(-28px) scale(.96); }
+}
+@keyframes pet-toast-pop { from { transform: scale(0) rotate(-45deg); } to { transform: scale(1) rotate(0); } }
+@media (prefers-reduced-motion: reduce) { .pet-toast, .pet-toast-icon { animation-duration: .01s; } }
+
+/* no tema escuro, logos ganham um "selo" branco para manter as cores oficiais legíveis */
+:root[data-theme="dark"] .tech-logo { background: #fff; padding: 2px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tech-logo { background: #fff; padding: 2px; } }
+
+/* patinhas do bug da barra lateral */
+@keyframes rail-legs { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.75); } }
+.rail-bug-legs { transform-box: fill-box; transform-origin: center; animation: rail-legs .35s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .rail-bug-legs { animation: none; } }
+
+/* ===== Linha do tempo da experiência ===== */
+.xp-fill { transition: height .15s linear; box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent); }
+.xp-head { width: 14px; height: 14px; border-radius: 9999px; background: #fff; border: 3px solid var(--accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent), 0 0 18px var(--accent); transition: top .15s linear; }
+.xp-spot { background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%); }
+.js .xp-bullet { opacity: 0; transform: translateX(-10px); }
+.js .in .xp-bullet { animation: xp-bullet .5s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes xp-bullet { to { opacity: 1; transform: none; } }
+.xp-promo { animation: xp-promo 2.4s ease-in-out infinite; }
+@keyframes xp-promo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@media (prefers-reduced-motion: reduce) {
+  .js .xp-bullet { opacity: 1; transform: none; animation: none; }
+  .xp-promo { animation: none; }
+}
+
+/* ===== Sobre mim ===== */
+.caret-block { display: inline-block; width: .55em; height: 1.05em; margin-left: 1px; vertical-align: -2px; background: #82aaff; animation: caret 1s step-end infinite; }
+.js .about-chip { opacity: 0; transform: translateY(8px); }
+.js .in .about-chip { animation: xp-bullet .5s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes edu-progress { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
+.edu-progress { animation: edu-progress 2.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .js .about-chip { opacity: 1; transform: none; animation: none; }
+  .edu-progress, .caret-block { animation: none; }
+}
+
+/* ===== Rodapé ===== */
+@keyframes footer-line { to { background-position: 200% 0; } }
+.footer-line { background: linear-gradient(90deg, var(--accent), var(--teal), var(--accent-2), var(--accent)); background-size: 200% 100%; animation: footer-line 6s linear infinite; }
+.footer-watermark {
+  font-size: clamp(4rem, 17vw, 15rem);
+  color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 22%, transparent);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent 80%);
+  -webkit-background-clip: text; background-clip: text;
+  mask-image: linear-gradient(to bottom, black 30%, transparent);
+}
+@media (prefers-reduced-motion: reduce) { .footer-line { animation: none; } }
