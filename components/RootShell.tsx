@@ -26,6 +26,7 @@ export function buildMetadata(lang: Lang): Metadata {
     title,
     description,
     authors: [{ name: profile.name }],
+    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/foto-anderson.jpg" },
     keywords: ["Backend", "Python", "Node.js", "SQL", "REST APIs", "AI", "Salvador", "Bahia", profile.role],
     alternates: {
       canonical: path,
