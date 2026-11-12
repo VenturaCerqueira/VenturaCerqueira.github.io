@@ -35,7 +35,6 @@ export function CodeIntro({ role, location, studying }: { role: string; location
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     setCount(0);
     let timer = 0;
     const io = new IntersectionObserver(([e]) => {

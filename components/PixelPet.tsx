@@ -134,7 +134,7 @@ export function PixelPet({ t }: { t: UI["pet"] }) {
       let t = 8 + Math.random() * Math.max(1, rightLimit - 8);
       if (Math.abs(t - dx) < W * 0.25) t = dx < W / 2 ? rightLimit - Math.random() * W * 0.2 : 8 + Math.random() * W * 0.2;
       target = Math.min(rightLimit, Math.max(8, t));
-      pace = Math.random() < 0.25 ? 3.2 : 1.2 + Math.random() * 0.8; // às vezes corre
+      pace = reduced ? 0.8 : Math.random() < 0.25 ? 3.2 : 1.2 + Math.random() * 0.8; // às vezes corre (nunca no modo calmo)
     };
 
     // rolagem: ele acompanha, andando na direção em que o visitante rola
@@ -144,7 +144,7 @@ export function PixelPet({ t }: { t: UI["pet"] }) {
       lastScroll = window.scrollY;
       if (Math.abs(delta) < 2) return;
       target = Math.min(rightLimit, Math.max(8, dx + Math.sign(delta) * Math.min(260, 80 + Math.abs(delta))));
-      pace = 3;
+      pace = reduced ? 1.2 : 3;
       pause = 0;
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -163,7 +163,7 @@ export function PixelPet({ t }: { t: UI["pet"] }) {
       } else {
         speed = Math.sign(diff) * Math.min(pace, Math.abs(diff) * 0.15 + 0.3);
         dir = speed > 0 ? 1 : -1;
-        if (pace > 2.5 && Math.random() < 0.006) jump(); // pulinho de alegria quando corre
+        if (!reduced && pace > 2.5 && Math.random() < 0.006) jump(); // pulinho de alegria quando corre
       }
       dx += speed;
 
@@ -244,11 +244,21 @@ export function PixelPet({ t }: { t: UI["pet"] }) {
       ctx.globalAlpha = 1;
     };
 
-    const loop = () => {
-      if (!document.hidden) { tick(); draw(); }
+    // Passo fixo de 60 Hz: se o navegador entregar menos quadros (Modo de Pouca Energia, celular lento),
+    // roda mais passos por quadro e o mascote anda na mesma velocidade.
+    const STEP = 1000 / 60;
+    let last = performance.now(), acc = 0;
+    const loop = (now: number) => {
+      if (!document.hidden) {
+        acc += Math.min(250, now - last);
+        let n = 0;
+        while (acc >= STEP && n < 15) { tick(); acc -= STEP; n++; }
+        draw();
+      }
+      last = now;
       raf = requestAnimationFrame(loop);
     };
-    if (reduced) { tick(); draw(); } else raf = requestAnimationFrame(loop);
+    raf = requestAnimationFrame((t) => { last = t; loop(t); });
 
     const onResize = () => { resize(); dx = Math.min(dx, rightLimit); draw(); };
     window.addEventListener("resize", onResize);

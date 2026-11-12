@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const reduced = () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+// "Reduzir movimento" não desliga estes efeitos: são suaves (fade, contagem, digitação).
+const reduced = () => false;
 
 /** Observa todos os .reveal da página e adiciona .in quando entram na tela. Renderize uma vez. */
 export function RevealObserver() {

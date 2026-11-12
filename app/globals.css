@@ -211,10 +211,11 @@ main { overflow-x: clip; }
 .ico-box { transition: transform .3s, background-color .3s, color .3s; }
 .group:hover .ico-box { transform: translateY(-2px) rotate(-4deg); background: var(--accent); color: #fff; }
 
+/* "Reduzir movimento": reduz em vez de desligar. Ficam fades, ícones, cursores e digitação;
+   saem deslocamentos grandes e movimentos contínuos de fundo. */
 @media (prefers-reduced-motion: reduce) {
-  .ico *, .ico-box { animation: none !important; transition: none; }
-  .marquee, .float, .blob, .ring, .gen-grid, .caret, .scroll-progress { animation: none; }
-  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee, .float, .blob, .gen-grid { animation: none; }
+  .js .reveal, .js .reveal-left, .js .reveal-right, .js .reveal-zoom { transform: none; transition: opacity .6s ease; }
   html { scroll-behavior: auto; }
 }
 
@@ -231,9 +232,7 @@ main { overflow-x: clip; }
 .cta-shine::after { content: ""; position: absolute; inset: 0 auto 0 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent); animation: shine 4.5s ease-in-out infinite; pointer-events: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .underline-draw, .arrow-nudge, .cta-shine::after, .ai-border::before { animation: none; }
-  .career-fill, .career-dot, .in .career-fill, .in .career-dot { animation: none; transform: none; }
-  .underline-draw { stroke-dasharray: none; }
+  .arrow-nudge, .cta-shine::after { animation: none; }
 }
 
 /* busca e voltar ao topo */
@@ -268,7 +267,7 @@ main { overflow-x: clip; }
   100% { opacity: 0; transform: translateY(-28px) scale(.96); }
 }
 @keyframes pet-toast-pop { from { transform: scale(0) rotate(-45deg); } to { transform: scale(1) rotate(0); } }
-@media (prefers-reduced-motion: reduce) { .pet-toast, .pet-toast-icon { animation-duration: .01s; } }
+
 
 /* no tema escuro, logos ganham um "selo" branco para manter as cores oficiais legíveis */
 :root[data-theme="dark"] .tech-logo { background: #fff; padding: 2px; }
@@ -277,7 +276,7 @@ main { overflow-x: clip; }
 /* patinhas do bug da barra lateral */
 @keyframes rail-legs { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(.75); } }
 .rail-bug-legs { transform-box: fill-box; transform-origin: center; animation: rail-legs .35s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) { .rail-bug-legs { animation: none; } }
+
 
 /* ===== Linha do tempo da experiência ===== */
 .xp-fill { transition: height .15s linear; box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 60%, transparent); }
@@ -290,7 +289,6 @@ main { overflow-x: clip; }
 .xp-promo { animation: xp-promo 2.4s ease-in-out infinite; }
 @keyframes xp-promo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
 @media (prefers-reduced-motion: reduce) {
-  .js .xp-bullet { opacity: 1; transform: none; animation: none; }
   .xp-promo { animation: none; }
 }
 
@@ -300,10 +298,7 @@ main { overflow-x: clip; }
 .js .in .about-chip { animation: xp-bullet .5s cubic-bezier(.2,.7,.2,1) forwards; }
 @keyframes edu-progress { 0% { transform: translateX(-100%); } 100% { transform: translateX(300%); } }
 .edu-progress { animation: edu-progress 2.2s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .js .about-chip { opacity: 1; transform: none; animation: none; }
-  .edu-progress, .caret-block { animation: none; }
-}
+
 
 /* ===== Rodapé ===== */
 @keyframes footer-line { to { background-position: 200% 0; } }
