@@ -104,7 +104,7 @@ export function HomePage({ lang }: { lang: Lang }) {
           <div className="blob -z-10 left-[-120px] top-10 h-80 w-80 bg-accent" />
           <div className="blob -z-10 right-[-80px] top-1/2 h-72 w-72 bg-teal [animation-delay:-6s]" />
 
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-12 pt-4 sm:px-6 sm:pt-8 lg:min-h-[calc(100svh-6rem)] lg:grid-cols-[1.35fr_1fr] lg:pb-16 lg:pt-6">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-12 pt-4 sm:px-6 sm:pt-8 lg:min-h-[calc(100svh-13rem)] lg:grid-cols-[1.35fr_1fr] lg:pb-6 lg:pt-6">
             <div>
               <span className="reveal inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold shadow-sm">
                 <span className="relative flex h-2 w-2">
@@ -191,6 +191,21 @@ export function HomePage({ lang }: { lang: Lang }) {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* convite para continuar: deixa claro que há mais conteúdo abaixo */}
+          <div className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">
+            <a href="#projetos" className="group flex items-center gap-4 text-center">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-border" />
+              <span className="flex flex-col items-center gap-1.5">
+                <span className="text-sm font-bold">{ui.moreBelow}</span>
+                <span className="text-xs text-muted">{ui.moreBelowSub}</span>
+                <span className="scroll-cue mt-1 grid h-10 w-10 place-items-center rounded-full border border-border bg-surface text-accent shadow-md transition group-hover:border-accent group-hover:bg-accent group-hover:text-white">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M6 9l6 6 6-6" /></svg>
+                </span>
+              </span>
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent via-border to-border" />
+            </a>
           </div>
         </section>
 

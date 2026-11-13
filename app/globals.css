@@ -412,3 +412,7 @@ main { overflow-x: clip; }
 /* ===== Responsividade: itens de grade/flex podem encolher (sem isso, textos longos alargam o bloco além da tela) ===== */
 .grid > *, .flex > * { min-width: 0; }
 pre, code { overflow-wrap: anywhere; }
+
+/* seta "tem mais conteúdo abaixo" */
+@keyframes scroll-cue { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+.scroll-cue { animation: scroll-cue 1.6s ease-in-out infinite; }
