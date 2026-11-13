@@ -332,7 +332,7 @@ export function HomePage({ lang }: { lang: Lang }) {
 
         {/* DEVTI'S */}
         <section id="devtis" className="px-4 pb-8 sm:px-6">
-          <div className="reveal reveal-zoom relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-surface p-8 shadow-xl shadow-accent/5 sm:p-12">
+          <div className="reveal reveal-zoom relative mx-auto max-w-6xl overflow-hidden rounded-3xl border border-border bg-surface p-5 shadow-xl shadow-accent/5 sm:p-12">
             <div className="blob -right-10 -top-10 h-56 w-56 bg-accent opacity-20" />
             <div className="relative grid items-center gap-8 lg:grid-cols-[1.4fr_1fr]">
               <div>
@@ -354,7 +354,7 @@ export function HomePage({ lang }: { lang: Lang }) {
                   { href: profile.contacts.instagram, title: "Anderson Ventura", sub: `@andersonventuracerqueira · ${ui.igPersonal}` },
                 ].map((ig) => (
                   <a key={ig.href} href={ig.href} {...ext}
-                    className="group flex items-center gap-4 rounded-2xl border border-border bg-bg p-4 transition hover:-translate-y-0.5 hover:border-accent">
+                    className="group flex min-w-0 items-center gap-3 rounded-2xl border border-border bg-bg p-3 transition hover:-translate-y-0.5 hover:border-accent sm:gap-4 sm:p-4">
                     <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af] text-white transition group-hover:rotate-6 group-hover:scale-110">
                       <SocialIcon name="instagram" />
                     </span>

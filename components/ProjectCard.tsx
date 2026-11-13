@@ -41,7 +41,7 @@ export function ProjectCard({ p, index = 0, ui }: { p: Project; index?: number; 
         ) : (
           <div className={`gen-cover relative flex aspect-[16/11] items-end bg-gradient-to-br ${gradients[index % gradients.length]} p-5`}>
             <div className="gen-grid absolute inset-0 opacity-30" />
-            <pre className="relative font-mono text-[11px] leading-relaxed text-white/85 transition duration-500 group-hover:-translate-y-1">
+            <pre className="relative min-w-0 whitespace-pre-wrap font-mono text-[11px] leading-relaxed text-white/85 transition duration-500 group-hover:-translate-y-1">
 {`${site ? `$ open ${hostOf(site.href)}` : `$ git clone ${main.href.replace("https://", "")}`}
 > ${p.stack.slice(0, 3).join(" · ")}`}
             </pre>

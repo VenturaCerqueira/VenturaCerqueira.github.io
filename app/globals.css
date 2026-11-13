@@ -408,3 +408,7 @@ main { overflow-x: clip; }
 /* botões brancos com texto roxo: no tema escuro o texto usa o roxo forte */
 :root[data-theme="dark"] .bg-white.text-accent { color: var(--accent-bg); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bg-white.text-accent { color: var(--accent-bg); } }
+
+/* ===== Responsividade: itens de grade/flex podem encolher (sem isso, textos longos alargam o bloco além da tela) ===== */
+.grid > *, .flex > * { min-width: 0; }
+pre, code { overflow-wrap: anywhere; }

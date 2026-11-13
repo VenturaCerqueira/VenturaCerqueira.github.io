@@ -17,11 +17,11 @@ export function CaseStudies({ cases, ui }: { cases: CaseStudy[]; ui: UI }) {
   return (
     <div className="reveal">
       {/* abas */}
-      <div role="tablist" aria-label={t.kicker} className="mx-auto mb-8 flex w-full max-w-3xl gap-2 overflow-x-auto rounded-2xl border border-border bg-surface p-1.5 shadow-sm">
+      <div role="tablist" aria-label={t.kicker} className="mx-auto mb-8 grid w-full max-w-3xl grid-cols-3 gap-1.5 rounded-2xl border border-border bg-surface p-1.5 shadow-sm">
         {cases.map((c, i) => (
           <button key={c.id} role="tab" type="button" aria-selected={i === active} aria-controls={`case-${c.id}`} id={`tab-${c.id}`}
             onClick={() => setActive(i)}
-            className={`group/item flex flex-1 items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-sm font-semibold transition ${
+            className={`group/item flex flex-col items-center justify-center gap-1 rounded-xl px-2 py-2.5 text-center text-xs font-semibold leading-tight transition sm:flex-row sm:gap-2 sm:px-4 sm:text-sm ${
               i === active ? "bg-gradient-to-r from-accent to-accent-2 text-white shadow-md shadow-accent/30" : "text-muted hover:bg-accent-soft hover:text-accent"
             }`}>
             <NavIcon name={ICONS[c.id as keyof typeof ICONS] ?? "folder"} size={16} />
@@ -32,7 +32,7 @@ export function CaseStudies({ cases, ui }: { cases: CaseStudy[]; ui: UI }) {
 
       {cases.map((c, i) => (
         <div key={c.id} id={`case-${c.id}`} role="tabpanel" aria-labelledby={`tab-${c.id}`} hidden={i !== active}
-          className="case-panel grid gap-8 rounded-3xl border border-border bg-surface p-6 shadow-xl shadow-accent/5 sm:p-8 lg:grid-cols-[1fr_1.15fr]">
+          className="case-panel grid gap-8 rounded-3xl border border-border bg-surface p-4 shadow-xl shadow-accent/5 sm:p-8 lg:grid-cols-[1fr_1.15fr]">
           {/* lado visual */}
           <div className="flex flex-col gap-4">
             {c.cover ? (
@@ -44,7 +44,7 @@ export function CaseStudies({ cases, ui }: { cases: CaseStudy[]; ui: UI }) {
                 <img src={c.cover} alt={c.title} loading="lazy" className="aspect-[16/10] w-full object-cover object-top" />
               </div>
             ) : (
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0f1222] p-5 font-mono text-[12px] leading-6 text-white/85">
+              <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0f1222] p-4 font-mono text-[11px] leading-6 text-white/85 [overflow-wrap:anywhere] sm:p-5 sm:text-[12px]">
                 <p className="text-white/40"># scraping_esocial.py</p>
                 <p><span className="text-[#c792ea]">for</span> pagina <span className="text-[#c792ea]">in</span> retomar_de(<span className="text-[#c3e88d]">&quot;progresso.json&quot;</span>):</p>
                 <p className="pl-4"><span className="text-[#c792ea]">try</span>:</p>
