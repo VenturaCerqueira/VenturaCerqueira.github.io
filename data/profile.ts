@@ -75,7 +75,7 @@ export const services: { icon: IconName; title: string; text: string }[] = [
   { icon: "automation", title: "Automação de processos", text: "Scripts e robôs que eliminam trabalho manual: scraping, extração de PDFs, rotinas SQL." },
   { icon: "database", title: "Banco de dados", text: "Modelagem, otimização de consultas e documentação em MySQL, SQL Server e Firebird." },
   { icon: "chart", title: "Dashboards e BI", text: "Relatórios estratégicos no Power BI para apoiar a tomada de decisão." },
-  { icon: "design", title: "Interfaces web", text: "Design e redesign de telas de sistemas, como o login da NFS-e e a área de eventos do KeepFolha." },
+  { icon: "design", title: "Interfaces web", text: "Design e redesign de telas de sistemas, como as telas de acesso da NFS-e e do KeepFolha." },
   { icon: "compass", title: "Requisitos e Product Owner", text: "Levantamento junto ao cliente, priorização de backlog e documentação técnica." },
 ];
 
@@ -183,9 +183,10 @@ export const featuredProjects: Project[] = [
     ],
   },
   {
-    title: "KeepFolha: Eventos",
+    title: "KeepFolha: Tela de acesso",
+    cover: "/projects/keepfolha.webp",
     tag: "Redesign de UI",
-    description: "Remake do design da área de eventos do sistema KeepFolha.",
+    description: "Remake do design da tela de acesso do KeepFolha, sistema de folha de pagamento municipal com BI, eSocial e SIAFIC.",
     stack: ["UI Design", "Front-end"],
     links: [{ label: "Acessar site", href: "https://www.keepfolha.com.br/evento/index" }],
   },

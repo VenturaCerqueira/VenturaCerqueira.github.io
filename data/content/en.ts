@@ -34,7 +34,7 @@ export const services = zip(pt.services, [
   { title: "Process automation", text: "Scripts and bots that eliminate manual work: scraping, PDF extraction, SQL routines." },
   { title: "Databases", text: "Data modeling, query optimization and documentation in MySQL, SQL Server and Firebird." },
   { title: "Dashboards and BI", text: "Strategic Power BI reports to support decision-making." },
-  { title: "Web interfaces", text: "Design and redesign of system screens, such as the NFS-e login page and the KeepFolha events area." },
+  { title: "Web interfaces", text: "Design and redesign of system screens, such as the NFS-e and KeepFolha login pages." },
   { title: "Requirements and Product Owner", text: "Requirements gathering with clients, backlog prioritization and technical documentation." },
 ]);
 
@@ -110,9 +110,9 @@ export const featuredProjects = zip(pt.featuredProjects, [
     stack: ["JavaScript", "Web", "Virtual assistant"],
   },
   {
-    title: "KeepFolha: Events",
+    title: "KeepFolha: Login page",
     tag: "UI redesign",
-    description: "Redesign of the events area of the KeepFolha system.",
+    description: "Redesign of the login page of KeepFolha, a municipal payroll system with BI, eSocial and SIAFIC.",
   },
   {
     tag: "Institutional website",
