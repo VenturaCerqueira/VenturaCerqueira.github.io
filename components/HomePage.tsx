@@ -58,6 +58,7 @@ export function HomePage({ lang }: { lang: Lang }) {
   const articles = getArticles();
   const c = profile.contacts;
   const hasResume = hasPublicFile(profile.resumePath);
+  const hasLetter = hasPublicFile(profile.coverLetterPath);
   const contactCards = [
     { label: ui.emailLabel, value: c.email, href: `mailto:${c.email}`, external: false, icon: "mail" as const, wide: true },
     { label: "WhatsApp", value: c.whatsappDisplay, href: c.whatsappHref, external: true, icon: "whatsapp" as const },
@@ -143,6 +144,12 @@ export function HomePage({ lang }: { lang: Lang }) {
                 <a href="#projetos" className={btnPrimary}>{ui.seeProjects} <span className="arrow-nudge" aria-hidden>→</span></a>
                 {secondaryCta}
               </div>
+              {hasLetter && (
+                <a href={profile.coverLetterPath} download data-goatcounter-click="carta-hero"
+                  className="reveal mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline [transition-delay:340ms]">
+                  <NavIcon name="mail" size={14} /> {ui.coverLetter}
+                </a>
+              )}
               <p className="reveal mt-4 flex items-center gap-2 text-xs text-muted [transition-delay:360ms]">
                 <Icon name="pin" className="h-4 w-4 text-accent" /> {profile.location} · {ui.workMode}
               </p>
@@ -584,6 +591,7 @@ export function HomePage({ lang }: { lang: Lang }) {
                   <a href={c.whatsappHref} {...ext} data-goatcounter-click="whatsapp-contato" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-accent shadow-lg transition hover:-translate-y-0.5"><SocialIcon name="whatsapp" className="text-[#25D366] transition group-hover:scale-110" /> {ui.contactWhatsapp} <span className="arrow-nudge" aria-hidden>→</span></a>
                   <a href={`mailto:${c.email}`} className="group inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10"><SocialIcon name="mail" className="transition group-hover:scale-110" /> {ui.contactEmail}</a>
                   {hasResume && <a href={profile.resumePath} download data-goatcounter-click="curriculo-contato" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10">{ui.contactCv}</a>}
+                  {hasLetter && <a href={profile.coverLetterPath} download data-goatcounter-click="carta-contato" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10">{ui.coverLetter}</a>}
                 </div>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">

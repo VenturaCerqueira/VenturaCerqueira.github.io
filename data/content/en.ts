@@ -8,6 +8,7 @@ const period = (p: string) => p.replace("Atual", "Present").replace("Em paralelo
 export const profile = {
   ...pt.profile,
   resumePath: "/resume-anderson-ventura-en.pdf",
+  coverLetterPath: "/cover-letter-anderson-ventura-en.pdf",
   role: "Mid-Level Software Developer",
   headline: "Backend · Automation · Artificial Intelligence",
   location: "Candeias, BA, Brazil",
