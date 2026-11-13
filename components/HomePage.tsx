@@ -17,7 +17,7 @@ import { ProjectFilter } from "@/components/ProjectFilter";
 import { LangSuggest } from "@/components/LangSuggest";
 import { getArticles } from "@/lib/articles";
 import { Icon } from "@/components/Icon";
-import { CountUp, RevealObserver, Typewriter } from "@/components/Motion";
+import { CountUp, RevealObserver } from "@/components/Motion";
 import { Photo, hasPublicFile } from "@/components/Photo";
 import { Flag } from "@/components/Flag";
 import { getContent } from "@/data/content";
@@ -98,13 +98,13 @@ export function HomePage({ lang }: { lang: Lang }) {
       }} />
 
       <main id="conteudo">
-        {/* HERO */}
+        {/* HERO: tudo que o recrutador precisa na primeira tela, sem rolar */}
         <section id="inicio" className="relative overflow-hidden">
           <div className="hero-bg hero-bg-fade absolute inset-0 -z-10 opacity-60" />
           <div className="blob -z-10 left-[-120px] top-10 h-80 w-80 bg-accent" />
           <div className="blob -z-10 right-[-80px] top-1/2 h-72 w-72 bg-teal [animation-delay:-6s]" />
 
-          <div className="mx-auto grid max-w-6xl items-center gap-14 px-4 pb-12 pt-14 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:pt-20">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pb-12 pt-4 sm:px-6 sm:pt-8 lg:min-h-[calc(100svh-6rem)] lg:grid-cols-[1.35fr_1fr] lg:pb-16 lg:pt-6">
             <div>
               <span className="reveal inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold shadow-sm">
                 <span className="relative flex h-2 w-2">
@@ -114,98 +114,85 @@ export function HomePage({ lang }: { lang: Lang }) {
                 {ui.available}
               </span>
 
-              <h1 className="reveal mt-6 [transition-delay:80ms]">
-                <span className="block text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-7xl">{profile.shortName}</span>
-                <span className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-xl font-bold sm:text-2xl">
-                  {ui.roleTitle}
-                  <span className="rounded-lg bg-gradient-to-r from-accent to-accent-2 px-3 py-0.5 text-white shadow-md shadow-accent/30">{ui.levelBadge}</span>
-                </span>
-              </h1>
-
-              <p className="reveal mt-5 flex flex-wrap gap-2 [transition-delay:140ms]">
-                {ui.heroTags.map((t, i) => (
-                  <span key={t} className={`rounded-full px-3 py-1 text-xs font-semibold ${i === ui.heroTags.length - 1 ? "ai-border bg-accent-soft text-accent" : "border border-border bg-surface text-muted"}`}>
-                    {i === ui.heroTags.length - 1 && <Icon name="sparkles" className="mr-1 inline h-3.5 w-3.5 align-[-2px]" />}{t}
+              {/* nome + cargo (no celular, com avatar ao lado) */}
+              <div className="reveal mt-3 flex items-center gap-3 sm:mt-4 sm:gap-4 [transition-delay:60ms]">
+                <div className="ring shrink-0 rounded-full p-[2px] lg:hidden">
+                  <div className="h-16 w-16 overflow-hidden rounded-full bg-surface sm:h-24 sm:w-24">
+                    <Photo src={profile.photo} alt={`${ui.photoAlt} ${profile.shortName}`} initials="AV" className="object-[50%_22%]" />
+                  </div>
+                </div>
+                <h1 className="min-w-0">
+                  <span className="block text-[1.7rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">{profile.shortName}</span>
+                  <span className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[15px] font-bold sm:mt-2 sm:text-xl lg:text-2xl">
+                    {ui.roleTitle}
+                    <span className="rounded-lg bg-gradient-to-r from-accent to-accent-2 px-2.5 py-0.5 text-white shadow-md shadow-accent/30">{ui.levelBadge}</span>
                   </span>
+                </h1>
+              </div>
+
+              <p className="reveal mt-3 max-w-xl text-[15px] leading-relaxed text-muted sm:mt-4 sm:text-lg [transition-delay:120ms]">{ui.heroPitch}</p>
+
+              {/* fatos-chave */}
+              <dl className="reveal mt-4 grid grid-cols-2 gap-1.5 sm:mt-6 sm:grid-cols-3 sm:gap-2 [transition-delay:180ms]">
+                {recruiterSummary.map((r, ri) => (
+                  <div key={r.label} className="group/item flex items-start gap-2.5 rounded-xl border border-border bg-surface/90 px-2.5 py-2 backdrop-blur transition hover:border-accent sm:p-3">
+                    <span className="hidden h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent transition group-hover/item:bg-accent group-hover/item:text-white sm:grid">
+                      <NavIcon name={r.icon} size={15} />
+                    </span>
+                    <div className="min-w-0">
+                      <dt className="text-[10px] font-semibold uppercase tracking-widest text-muted">{r.label}</dt>
+                      <dd className={`text-[12.5px] font-bold leading-snug sm:text-[13px] ${ri === 0 ? "text-accent" : ""}`}>{r.value}</dd>
+                    </div>
+                  </div>
                 ))}
-              </p>
+              </dl>
 
-              <p className="reveal mt-6 min-h-[2.75em] text-2xl font-bold leading-snug tracking-tight [transition-delay:200ms] sm:text-3xl">
-                {ui.heroLead}{" "}
-                <span className="relative inline-block">
-                  <Typewriter className="text-gradient" words={ui.heroWords} />
-                  <svg className="absolute -bottom-1.5 left-0 w-full text-accent" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden>
-                    <path className="underline-draw" d="M2 9 C 80 2, 220 2, 298 7" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
-                  </svg>
-                </span>
-              </p>
-              <p className="reveal mt-5 max-w-xl leading-relaxed text-muted [transition-delay:260ms]">
-                {ui.heroText}
-              </p>
-
-              <div className="reveal mt-8 flex flex-wrap gap-3 [transition-delay:320ms]">
-                <a href="#projetos" className={btnPrimary}>{ui.seeProjects} <span className="arrow-nudge" aria-hidden>→</span></a>
-                {secondaryCta}
-                {hasLetter && (
-                  <a href={profile.coverLetterPath} download data-goatcounter-click="carta-hero" className={`group ${btnGhost}`}>
-                    <NavIcon name="mail" size={16} className="text-accent" /> {ui.docs.letterShort}
+              {/* ações principais */}
+              <div className="reveal mt-4 grid grid-cols-2 gap-2 sm:mt-6 sm:flex sm:flex-wrap sm:gap-3 [transition-delay:240ms]">
+                {hasResume ? (
+                  <a href={profile.resumePath} download data-goatcounter-click="curriculo-hero" className={`${btnPrimary} whitespace-nowrap max-sm:gap-1.5 max-sm:px-3 max-sm:text-[13px]`}>
+                    <NavIcon name="download" size={16} /> {ui.docs.cvShort}
+                  </a>
+                ) : (
+                  <a href={c.linkedin} {...ext} className={btnPrimary}><SocialIcon name="linkedin" /> LinkedIn</a>
+                )}
+                {profile.calLink && (
+                  <a href={profile.calLink} {...ext} data-goatcounter-click="agendar-hero" className={`group ${btnGhost} whitespace-nowrap max-sm:gap-1.5 max-sm:px-3 max-sm:text-[13px]`}>
+                    <NavIcon name="clock" size={16} className="text-accent" /> {ui.heroSchedule}
                   </a>
                 )}
+                <a href={c.whatsappHref} {...ext} data-goatcounter-click="whatsapp-hero" className={`group ${btnGhost} max-sm:hidden`}>
+                  <SocialIcon name="whatsapp" className="text-[#25D366]" /> WhatsApp
+                </a>
               </div>
-              <p className="reveal mt-4 flex items-center gap-2 text-xs text-muted [transition-delay:360ms]">
-                <Icon name="pin" className="h-4 w-4 text-accent" /> {profile.location} · {ui.workMode}
+              <p className="reveal mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm sm:mt-4 [transition-delay:280ms]">
+                <a href="#projetos" className="link-arrow font-semibold text-accent">{ui.seeProjects} <span aria-hidden>↓</span></a>
+                {hasLetter && (
+                  <a href={profile.coverLetterPath} download data-goatcounter-click="carta-hero" className="font-medium text-muted underline-offset-4 hover:text-accent hover:underline">{ui.docs.letterShort}</a>
+                )}
+                <a href={c.linkedin} {...ext} className="font-medium text-muted underline-offset-4 hover:text-accent hover:underline">LinkedIn</a>
+                <a href={c.github} {...ext} className="font-medium text-muted underline-offset-4 hover:text-accent hover:underline">GitHub</a>
               </p>
             </div>
 
-            {/* foto */}
-            <div className="reveal reveal-zoom relative mx-auto w-full max-w-sm [transition-delay:200ms]">
+            {/* foto (desktop) */}
+            <div className="reveal reveal-zoom relative mx-auto hidden w-full max-w-[19rem] [transition-delay:150ms] lg:block">
               <div className="ring rounded-[2rem] p-[3px] shadow-2xl shadow-accent/30">
                 <div className="aspect-[4/5] overflow-hidden rounded-[calc(2rem-3px)] bg-surface">
                   <Photo src={profile.photo} alt={`${ui.photoAlt} ${profile.shortName}`} initials="AV" className="object-[50%_25%] transition duration-700 hover:scale-105" />
                 </div>
               </div>
-              <span className="float absolute right-2 -top-4 flex sm:-right-6 items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-semibold shadow-lg">
-                <Icon name="sparkles" className="h-4 w-4 text-accent" /> {ui.badgeAi}
-              </span>
-              <div className="float absolute left-2 bottom-28 rounded-xl sm:-left-8 border border-border bg-surface px-4 py-3 shadow-xl [animation-delay:1.5s]">
+              <div className="float absolute -left-10 bottom-16 rounded-xl border border-border bg-surface px-4 py-3 shadow-xl">
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-muted">{ui.inProduction}</p>
                 <p className="flex items-center gap-1.5 text-sm font-bold">
                   <Icon name="check" className="h-4 w-4 text-teal" /> {ui.systemsLive}
                 </p>
               </div>
-              <div className="float absolute -bottom-6 -right-6 hidden rounded-xl border border-white/15 bg-[#0f1222]/90 px-4 py-3 font-mono text-[11px] leading-relaxed text-white/90 shadow-xl backdrop-blur [animation-delay:3s] sm:block">
-                <p><span className="text-[#93c5fd]">def</span> consultar(id):</p>
-                <p className="pl-3"><span className="text-[#93c5fd]">return</span> db.buscar(id)</p>
-              </div>
-            </div>
-          </div>
-
-          {/* RESUMO PARA RECRUTADORES */}
-          <div className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-            <div className="reveal rounded-3xl border border-border bg-surface/90 p-6 shadow-xl shadow-accent/5 backdrop-blur sm:p-8">
-              <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-                <h2 className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-accent">
-                  <Icon name="check" className="h-5 w-5" /> {ui.summaryTitle}
-                </h2>
-                <div className="grid w-full grid-cols-3 gap-4 sm:flex sm:w-auto sm:gap-8">
-                  {highlights.map((h) => (
-                    <div key={h.label} className="text-center sm:text-right">
-                      <p className="text-2xl font-extrabold"><CountUp to={Number(h.value)} /><span className="text-teal">+</span></p>
-                      <p className="mx-auto max-w-[9rem] text-[11px] leading-tight text-muted sm:mx-0">{h.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-                {recruiterSummary.map((r, ri) => (
-                  <div key={r.label} className="group/item flex items-start gap-3 bg-surface p-4 transition hover:bg-accent-soft/40">
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent transition duration-300 group-hover/item:rotate-6 group-hover/item:bg-accent group-hover/item:text-white">
-                      <NavIcon name={r.icon} size={18} />
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-[11px] font-semibold uppercase tracking-widest text-muted">{r.label}</p>
-                      <p className={`mt-0.5 font-bold ${ri === 0 ? "text-accent" : ""}`}>{r.value}</p>
-                    </div>
+              <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+                {highlights.map((h) => (
+                  <div key={h.label} className="rounded-xl border border-border bg-surface/90 px-2 py-2 backdrop-blur">
+                    <p className="text-xl font-extrabold"><CountUp to={Number(h.value)} /><span className="text-teal">+</span></p>
+                    <p className="text-[10px] leading-tight text-muted">{h.label}</p>
                   </div>
                 ))}
               </div>

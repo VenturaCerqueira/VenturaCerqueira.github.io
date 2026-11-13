@@ -20,6 +20,8 @@ const pt = {
   heroText:
     "5+ anos em tecnologia e 3 promoções na mesma empresa. Hoje atuo de ponta a ponta, do requisito com o cliente ao deploy, em sistemas de gestão pública usados por prefeituras. Também tenho minha empresa, a DevTI's (MEI), onde desenvolvo sistemas para outras empresas. E uso IA no meu fluxo de trabalho.",
   seeProjects: "Ver projetos reais",
+  heroPitch: "5+ anos em TI, 3 promoções e sistemas de gestão pública em produção. Do requisito ao deploy, com IA no dia a dia.",
+  heroSchedule: "Agendar conversa",
   downloadCvPdf: "Baixar currículo (PDF)",
   coverLetter: "Carta de apresentação (PDF)",
   docs: { title: "Documentos", cv: "Currículo", letter: "Carta de apresentação", cvShort: "Currículo (PDF)", letterShort: "Carta (PDF)", cvMeta: "PDF · 2 páginas", letterMeta: "PDF · 1 página" },
@@ -151,6 +153,8 @@ const en: UI = {
   heroText:
     "5+ years in tech and 3 promotions at the same company. Today I work end to end, from gathering requirements with the client to deployment, on public management systems used by city governments. I also run my own company, DevTI's (MEI), where I build systems for other businesses. And I use AI in my daily workflow.",
   seeProjects: "See real projects",
+  heroPitch: "5+ years in IT, 3 promotions and public sector systems in production. From requirements to deployment, with AI in my daily work.",
+  heroSchedule: "Book a call",
   downloadCvPdf: "Download résumé (PDF)",
   coverLetter: "Cover letter (PDF)",
   docs: { title: "Documents", cv: "Résumé", letter: "Cover letter", cvShort: "Résumé (PDF)", letterShort: "Cover letter (PDF)", cvMeta: "PDF · 2 pages", letterMeta: "PDF · 1 page" },
@@ -286,6 +290,8 @@ const es: UI = {
   heroText:
     "Más de 5 años en tecnología y 3 ascensos en la misma empresa. Hoy trabajo de punta a punta, desde el levantamiento de requisitos con el cliente hasta el despliegue, en sistemas de gestión pública utilizados por municipios. También tengo mi propia empresa, DevTI's (MEI), donde desarrollo sistemas para otras empresas. Y uso IA en mi flujo de trabajo.",
   seeProjects: "Ver proyectos reales",
+  heroPitch: "Más de 5 años en TI, 3 ascensos y sistemas de gestión pública en producción. Del requisito al despliegue, con IA en el día a día.",
+  heroSchedule: "Agendar una charla",
   downloadCvPdf: "Descargar CV (PDF)",
   coverLetter: "Carta de presentación (PDF)",
   docs: { title: "Documentos", cv: "Currículum", letter: "Carta de presentación", cvShort: "CV (PDF)", letterShort: "Carta (PDF)", cvMeta: "PDF · 2 páginas", letterMeta: "PDF · 1 página" },
