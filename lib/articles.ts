@@ -9,19 +9,21 @@ import { marked } from "marked";
     description: ...
     date: 2026-11-13
     tags: Python, IA
-    draft: true        <- rascunho: aparece só no localhost (npm run dev), nunca no site publicado.
-                          Atenção: o arquivo .md fica no repositório (público) se for commitado.
     ---
-  Para publicar, troque para "draft: false" (ou apague a linha) e faça git push.
+  Pastas:
+    content/rascunhos/  rascunhos: só nesta máquina (fora do git) e só no localhost (npm run dev).
+    content/artigos/    publicados: vão para o site no próximo git push.
+  Para publicar um rascunho: mova o arquivo de content/rascunhos/ para content/artigos/ e faça git push.
 */
 
 export type Article = { slug: string; title: string; description: string; date: string; tags: string[]; draft: boolean; html: string; minutes: number };
 
 const DIR = path.join(process.cwd(), "content", "artigos");
+const DRAFTS = path.join(process.cwd(), "content", "rascunhos");
 const SHOW_DRAFTS = process.env.NODE_ENV !== "production";
 
-function parse(file: string): Article {
-  const raw = fs.readFileSync(path.join(DIR, file), "utf8").replace(/\r\n/g, "\n");
+function parse(dir: string, file: string, isDraft: boolean): Article {
+  const raw = fs.readFileSync(path.join(dir, file), "utf8").replace(/\r\n/g, "\n");
   const m = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   const meta: Record<string, string> = {};
   (m?.[1] ?? "").split("\n").forEach((l) => {
@@ -36,17 +38,16 @@ function parse(file: string): Article {
     description: meta.description ?? "",
     date: meta.date ?? "",
     tags: (meta.tags ?? "").split(",").map((t) => t.trim()).filter(Boolean),
-    draft: meta.draft === "true",
+    draft: isDraft || meta.draft === "true",
     html: marked.parse(body, { async: false }) as string,
     minutes: Math.max(1, Math.round(words / 200)),
   };
 }
 
 export function getArticles(): Article[] {
-  if (!fs.existsSync(DIR)) return [];
-  return fs.readdirSync(DIR)
-    .filter((f) => f.endsWith(".md"))
-    .map(parse)
+  const read = (dir: string, isDraft: boolean) =>
+    fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".md")).map((f) => parse(dir, f, isDraft)) : [];
+  return [...read(DIR, false), ...(SHOW_DRAFTS ? read(DRAFTS, true) : [])]
     .filter((a) => SHOW_DRAFTS || !a.draft)
     .sort((a, b) => b.date.localeCompare(a.date));
 }

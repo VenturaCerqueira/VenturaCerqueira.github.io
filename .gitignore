@@ -5,3 +5,6 @@ next-env.d.ts
 *.tsbuildinfo
 .env*
 .vercel
+
+# rascunhos de artigos: ficam só nesta máquina até serem aprovados
+content/rascunhos/
