@@ -222,7 +222,7 @@ export function HomePage({ lang }: { lang: Lang }) {
         {/* PROJETOS */}
         <Section id="projetos" kicker={ui.projKicker} title={<>{ui.projTitleA}<span className="text-gradient">{ui.projTitleB}</span></>}
           intro={ui.projIntro}>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>*:last-child:nth-child(3n+1)]:col-start-2">
             {featuredProjects.map((p, i) => <ProjectCard key={p.title} p={p} index={i} ui={ui} />)}
           </div>
 

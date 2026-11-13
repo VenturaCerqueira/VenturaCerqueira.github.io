@@ -67,7 +67,7 @@ export const company = {
 export const highlights = [
   { value: "5", label: "anos de experiência em tecnologia" },
   { value: "50", label: "repositórios públicos no GitHub" },
-  { value: "6", label: "sistemas e sites em produção" },
+  { value: "7", label: "sistemas e sites em produção" },
 ];
 
 export const marqueeOrgs = ["Keep Informática", "DevTI's", "e-Contrib", "Prefeituras municipais", "AgendaAI", "KeepFolha", "BFT Camarão", "Colégio Luiz Viana Filho"];
@@ -203,6 +203,14 @@ export const featuredProjects: Project[] = [
       { label: "Acessar site", href: "https://bftcamarao.vercel.app" },
       { label: "GitHub", href: repo("website") },
     ],
+  },
+  {
+    title: "Compras Online",
+    cover: "/projects/compras-online.webp",
+    tag: "Keep Informática · Manutenção",
+    description: "Sistema web de gestão de compras para prefeituras e entidades públicas, com acesso por município e entidade. Atuo na manutenção evolutiva e na correção de bugs.",
+    stack: ["PHP", "Yii2", "Bootstrap", "jQuery"],
+    links: [{ label: "Acessar site", href: "http://keepinformatica.com.br/compras-online/web/user-management/auth/login" }],
   },
 ];
 

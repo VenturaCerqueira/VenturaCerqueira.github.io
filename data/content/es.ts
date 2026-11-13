@@ -119,6 +119,10 @@ export const featuredProjects = zip(pt.featuredProjects, [
     tag: "Sitio institucional",
     description: "Sitio web del sistema de gestión para la cría de camarón (tecnología biofloc).",
   },
+  {
+    tag: "Keep Informática · Mantenimiento",
+    description: "Sistema web de gestión de compras para municipios y entidades públicas, con acceso por municipio y entidad. Trabajo en el mantenimiento evolutivo y la corrección de errores.",
+  },
 ]);
 
 export const openSource = zip(pt.openSource, [

@@ -119,6 +119,10 @@ export const featuredProjects = zip(pt.featuredProjects, [
     tag: "Institutional website",
     description: "Website for a management system for shrimp farming (biofloc technology).",
   },
+  {
+    tag: "Keep Informática · Maintenance",
+    description: "Web-based purchasing management system for city governments and public entities, with access by city and entity. I work on ongoing maintenance and bug fixing.",
+  },
 ]);
 
 export const openSource = zip(pt.openSource, [
