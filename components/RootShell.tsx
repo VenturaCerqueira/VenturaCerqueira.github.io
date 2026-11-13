@@ -27,6 +27,8 @@ export function buildMetadata(lang: Lang): Metadata {
     description,
     authors: [{ name: profile.name }],
     icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/foto-anderson.jpg" },
+    // Google Search Console: defina NEXT_PUBLIC_GSC_VERIFICATION com o código da tag "google-site-verification".
+    verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } : undefined,
     keywords: ["Backend", "Python", "Node.js", "SQL", "REST APIs", "AI", "Salvador", "Bahia", profile.role],
     alternates: {
       canonical: path,
@@ -35,8 +37,9 @@ export function buildMetadata(lang: Lang): Metadata {
     openGraph: {
       title, description, type: "website", url: path, locale: OG_LOCALE[lang],
       alternateLocale: Object.values(OG_LOCALE).filter((l) => l !== OG_LOCALE[lang]),
-      images: [{ url: profile.photo, width: 612, height: 918, alt: profile.name }],
+      images: [{ url: `/og/og-${lang}.jpg`, width: 1200, height: 630, alt: `${profile.name} | ${profile.role}` }],
     },
+    twitter: { card: "summary_large_image", title, description, images: [`/og/og-${lang}.jpg`] },
   };
 }
 
@@ -47,7 +50,13 @@ export function RootShell({ lang, children }: { lang: Lang; children: React.Reac
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        {children}
+        {/* Estatísticas sem cookies (GoatCounter). Ativa só se NEXT_PUBLIC_GOATCOUNTER estiver definido (ex.: "andersonventura"). */}
+        {process.env.NEXT_PUBLIC_GOATCOUNTER && (
+          <script data-goatcounter={`https://${process.env.NEXT_PUBLIC_GOATCOUNTER}.goatcounter.com/count`} async src="https://gc.zgo.at/count.js" />
+        )}
+      </body>
     </html>
   );
 }

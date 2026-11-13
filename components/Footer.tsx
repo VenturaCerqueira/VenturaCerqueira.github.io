@@ -14,7 +14,7 @@ export function Footer({ t }: { t: Content }) {
   const c = profile.contacts;
   const htmlLang = LOCALES.find((l) => l.lang === t.lang)!.htmlLang;
 
-  const navLinks = (["projetos", "ia", "nivel", "devtis", "experiencia", "stack", "sobre", "contato"] as const).map((id) => ({ href: `#${id}`, label: ui.dots[id] }));
+  const navLinks = (["projetos", "casos", "ia", "nivel", "devtis", "experiencia", "stack", "sobre", "contato"] as const).map((id) => ({ href: `#${id}`, label: ui.dots[id] }));
   const socials = [
     { icon: "linkedin" as const, href: c.linkedin, label: "LinkedIn" },
     { icon: "github" as const, href: c.github, label: "GitHub" },

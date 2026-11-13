@@ -7,6 +7,7 @@ export type SearchItem = { group: string; title: string; subtitle?: string; href
 const SECTION_KEYWORDS: Record<string, string> = {
   inicio: "inicio topo resumo recrutador home top summary recruiter",
   projetos: "portfolio portafolio sites sistemas systems proyectos projects",
+  casos: "casos estudo case study estudio problema solucao resultado",
   "open-source": "github repositorios repositories codigo code",
   ia: "ia ai llm agentes agents prompt claude chatgpt inteligencia",
   nivel: "nivel level senioridade seniority pleno mid semi senior carreira career promocao promotion",

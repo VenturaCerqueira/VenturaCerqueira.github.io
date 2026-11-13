@@ -28,6 +28,9 @@ jobs:
       - run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://venturacerqueira.github.io
+          # Defina em Settings > Secrets and variables > Actions > Variables
+          NEXT_PUBLIC_GOATCOUNTER: ${{ vars.GOATCOUNTER_CODE }}
+          NEXT_PUBLIC_GSC_VERIFICATION: ${{ vars.GSC_VERIFICATION }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out

@@ -10,6 +10,8 @@ import { TechIcon } from "@/components/TechIcon";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { CodeIntro } from "@/components/CodeIntro";
 import { Footer } from "@/components/Footer";
+import { CaseStudies } from "@/components/CaseStudies";
+import { CASES } from "@/data/content/cases";
 import { Icon } from "@/components/Icon";
 import { CountUp, RevealObserver, Typewriter } from "@/components/Motion";
 import { Photo, hasPublicFile } from "@/components/Photo";
@@ -49,7 +51,7 @@ export function HomePage({ lang }: { lang: Lang }) {
     ui, aiExperience, careerSteps, company, courses, education, experience, featuredProjects, highlights, languages,
     levelEvidence, marqueeOrgs, marqueeTech, openSource, profile, recruiterSummary, services, skills,
   } = t;
-  const DOT_ICONS = { inicio: "terminal", projetos: "rocket", ia: "sparkles", nivel: "trend", devtis: "building", experiencia: "briefcase", stack: "layers", sobre: "user", contato: "mail" } as const;
+  const DOT_ICONS = { inicio: "terminal", projetos: "rocket", casos: "book", ia: "sparkles", nivel: "trend", devtis: "building", experiencia: "briefcase", stack: "layers", sobre: "user", contato: "mail" } as const;
   const sectionDots = (Object.keys(DOT_ICONS) as (keyof typeof DOT_ICONS)[]).map((id) => ({ id, label: ui.dots[id], icon: DOT_ICONS[id] }));
   const c = profile.contacts;
   const hasResume = hasPublicFile(profile.resumePath);
@@ -62,8 +64,8 @@ export function HomePage({ lang }: { lang: Lang }) {
     { label: "Instagram", value: "@andersonventuracerqueira", href: c.instagram, external: true, icon: "instagram" as const, wide: true },
   ];
   const secondaryCta = hasResume
-    ? <a href={profile.resumePath} download className={btnGhost}>{ui.downloadCvPdf}</a>
-    : <a href={c.linkedin} {...ext} className={btnGhost}><SocialIcon name="linkedin" className="text-[#0a66c2]" /> {ui.seeLinkedin}</a>;
+    ? <a href={profile.resumePath} download data-goatcounter-click="curriculo-hero" className={btnGhost}>{ui.downloadCvPdf}</a>
+    : <a href={c.linkedin} {...ext} data-goatcounter-click="linkedin-hero" className={btnGhost}><SocialIcon name="linkedin" className="text-[#0a66c2]" /> {ui.seeLinkedin}</a>;
 
   return (
     <>
@@ -215,6 +217,11 @@ export function HomePage({ lang }: { lang: Lang }) {
           <div className="mt-10 text-center">
             <a href={`${c.github}?tab=repositories`} {...ext} className={btnGhost}>{ui.allRepos}</a>
           </div>
+        </Section>
+
+        {/* ESTUDOS DE CASO */}
+        <Section id="casos" alt kicker={ui.cases.kicker} title={<>{ui.cases.titleA}<span className="text-gradient">{ui.cases.titleB}</span></>} intro={ui.cases.intro}>
+          <CaseStudies cases={CASES[lang]} ui={ui} />
         </Section>
 
         {/* IA */}
@@ -516,9 +523,9 @@ export function HomePage({ lang }: { lang: Lang }) {
                 <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{ui.contactTitle}</h2>
                 <p className="mt-4 text-white/85">{ui.contactText}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <a href={c.whatsappHref} {...ext} className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-accent shadow-lg transition hover:-translate-y-0.5"><SocialIcon name="whatsapp" className="text-[#25D366] transition group-hover:scale-110" /> {ui.contactWhatsapp} <span className="arrow-nudge" aria-hidden>→</span></a>
+                  <a href={c.whatsappHref} {...ext} data-goatcounter-click="whatsapp-contato" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-accent shadow-lg transition hover:-translate-y-0.5"><SocialIcon name="whatsapp" className="text-[#25D366] transition group-hover:scale-110" /> {ui.contactWhatsapp} <span className="arrow-nudge" aria-hidden>→</span></a>
                   <a href={`mailto:${c.email}`} className="group inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10"><SocialIcon name="mail" className="transition group-hover:scale-110" /> {ui.contactEmail}</a>
-                  {hasResume && <a href={profile.resumePath} download className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10">{ui.contactCv}</a>}
+                  {hasResume && <a href={profile.resumePath} download data-goatcounter-click="curriculo-contato" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10">{ui.contactCv}</a>}
                 </div>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
@@ -542,7 +549,7 @@ export function HomePage({ lang }: { lang: Lang }) {
 
       <Footer t={t} />
 
-      <a href={c.whatsappHref} {...ext} aria-label={ui.whatsappAria}
+      <a href={c.whatsappHref} {...ext} data-goatcounter-click="whatsapp-flutuante" aria-label={ui.whatsappAria}
         className="fixed bottom-5 right-5 z-30 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl transition hover:scale-105">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
           <path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.2-.3-.2-.5-.3z" />

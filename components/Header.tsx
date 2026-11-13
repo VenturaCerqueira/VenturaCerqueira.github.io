@@ -45,6 +45,7 @@ export function Header({ t }: { t: Content }) {
 
   const projectsMenu: { href: string; label: string; desc: string; icon: NavIconName }[] = [
     { href: "#projetos", label: n.inProduction, desc: n.inProductionDesc, icon: "rocket" },
+    { href: "#casos", label: n.cases, desc: n.casesDesc, icon: "book" },
     { href: "#open-source", label: n.openSource, desc: n.openSourceDesc, icon: "code" },
     { href: "#devtis", label: n.company, desc: n.companyDesc, icon: "building" },
   ];

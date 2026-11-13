@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Anderson Ventura Cerqueira - Currículum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  /* Fonte do currículo. Edite este arquivo e gere o PDF de novo (ver resume/README.md). */
+  @page { size: A4; margin: 13mm 14mm 12mm; }
+  :root { --ink: #14162b; --muted: #555b72; --accent: #5b3df5; --accent2: #2f6bdc; --teal: #0f8a7e; --line: #e3e6f0; --soft: #f1effe; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Plus Jakarta Sans", Arial, sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.45; }
+  a { color: inherit; text-decoration: none; }
+
+  header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; padding-bottom: 10px; border-bottom: 2.5px solid var(--accent); }
+  h1 { font-size: 22pt; font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; }
+  h1 span { color: var(--accent); }
+  .role { margin-top: 4px; font-size: 11pt; font-weight: 700; }
+  .role em { font-style: normal; color: var(--accent); }
+  .tagline { color: var(--muted); font-size: 9pt; margin-top: 1px; }
+  .contacts { text-align: right; font-size: 8.4pt; color: var(--muted); line-height: 1.6; white-space: nowrap; }
+  .contacts b { color: var(--ink); font-weight: 600; }
+
+  section { margin-top: 11px; }
+  h2 { display: flex; align-items: center; gap: 8px; font-size: 9pt; font-weight: 800; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 6px; }
+  h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .summary { color: #2b2f45; text-align: justify; }
+
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 18px; }
+  .skills div { break-inside: avoid; }
+  .skills b { font-weight: 700; }
+
+  .job { margin-bottom: 8px; break-inside: avoid; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .job-title { font-weight: 700; font-size: 10.2pt; }
+  .job-company { color: var(--accent); font-weight: 600; }
+  .job-company small { color: var(--muted); font-weight: 400; font-size: 8.8pt; }
+  .period { font-size: 8.6pt; font-weight: 600; color: var(--muted); white-space: nowrap; }
+  .badge { display: inline-block; font-size: 7.4pt; font-weight: 700; padding: 0 6px; border-radius: 99px; margin-left: 5px; vertical-align: 1px; }
+  .badge.promo { background: #fff1e6; color: #c2570c; }
+  .badge.now { background: #e3f6f3; color: var(--teal); }
+  ul { margin: 3px 0 0 14px; }
+  li { margin: 1.5px 0; padding-left: 2px; }
+  li::marker { color: var(--accent); }
+
+  .projects { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+  .project { break-inside: avoid; }
+  .project b { font-weight: 700; }
+  .project .link { color: var(--accent2); font-size: 8.4pt; }
+  .project p { color: #2b2f45; }
+
+  .two { display: grid; grid-template-columns: 1.35fr 1fr; gap: 18px; }
+  .edu div { margin-bottom: 4px; }
+  .edu b { font-weight: 700; }
+  .muted { color: var(--muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chips span { background: var(--soft); color: #3b2fb0; border-radius: 6px; padding: 1px 7px; font-size: 8.4pt; font-weight: 500; }
+  footer { margin-top: 12px; padding-top: 6px; border-top: 1px solid var(--line); font-size: 8pt; color: var(--muted); text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Anderson Ventura <span>Cerqueira</span></h1>
+    <p class="role">Analista de Desarrollo <em>Semi Senior</em> · Backend, Automatización e IA</p>
+    <p class="tagline">Python · Node.js · SQL · APIs REST · Docker · Power BI</p>
+  </div>
+  <div class="contacts">
+    <b>Candeias, BA, Brasil</b> · Remoto o híbrido<br />
+    <a href="mailto:andersonventura2000@gmail.com">andersonventura2000@gmail.com</a><br />
+    WhatsApp: <a href="https://wa.me/557181465381">+55 71 8146-5381</a><br />
+    <a href="https://www.linkedin.com/in/anderson-ventura">linkedin.com/in/anderson-ventura</a><br />
+    <a href="https://github.com/VenturaCerqueira">github.com/VenturaCerqueira</a><br />
+    <b><a href="https://venturacerqueira.github.io">venturacerqueira.github.io</a></b>
+  </div>
+</header>
+
+<section>
+  <h2>Resumen profesional</h2>
+  <p class="summary">
+    Analista de Sistemas con más de 5 años en tecnología y 3 ascensos en Keep Informática. Trabajo de punta a punta en
+    sistemas de gestión tributaria municipal utilizados por municipios: levantamiento de requisitos como Product Owner,
+    desarrollo backend en Python, Node.js y SQL, APIs REST, Docker y dashboards en Power BI. Fundador de DevTI's (MEI),
+    donde desarrollo sistemas, sitios web y automatizaciones para otras empresas, incluido el producto AgendaAI. Uso IA en
+    mi flujo de desarrollo (asistentes y agentes de código, ingeniería de prompts), siempre con revisión técnica del
+    resultado. Mentor tecnológico de 6 equipos en un proyecto educativo.
+  </p>
+</section>
+
+<section>
+  <h2>Competencias técnicas</h2>
+  <div class="skills">
+    <div><b>Backend:</b> Python, Node.js, TypeScript, PHP</div>
+    <div><b>Bases de datos:</b> MySQL, SQL Server, Firebird, modelado de datos</div>
+    <div><b>APIs e integraciones:</b> APIs REST, Postman, Swagger, web scraping</div>
+    <div><b>DevOps y automatización:</b> Docker, Git, GitHub, scripts de automatización</div>
+    <div><b>Datos y BI:</b> Power BI, pandas, dashboards</div>
+    <div><b>IA:</b> Claude Code, ChatGPT, ingeniería de prompts, flujos multiagente</div>
+    <div><b>Métodos:</b> Scrum, Jira, Product Owner, documentación técnica</div>
+    <div><b>Front-end y UI:</b> HTML, CSS, JavaScript, diseño de interfaces</div>
+  </div>
+</section>
+
+<section>
+  <h2>Experiencia profesional</h2>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Fundador y Desarrollador</span><span class="badge now">Actual</span><br />
+        <span class="job-company">DevTI's (MEI) <small>· empresa propia, en paralelo</small></span></div>
+      <span class="period">Actual</span>
+    </div>
+    <ul>
+      <li>Desarrollo de sistemas, sitios web y automatizaciones a medida para otras empresas.</li>
+      <li>Atención directa al cliente: requisitos, propuesta, desarrollo, entrega y soporte.</li>
+      <li>Producto propio AgendaAI: agendamiento en línea y por WhatsApp con asistente inteligente.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Analista de Sistemas</span><span class="badge promo">Ascenso</span><span class="badge now">Actual</span><br />
+        <span class="job-company">Keep Informática LTDA <small>· Salvador, BA</small></span></div>
+      <span class="period">11/2023 - Actual</span>
+    </div>
+    <ul>
+      <li>Rol de Product Owner, liderando el levantamiento y análisis de requisitos con los clientes.</li>
+      <li>Desarrollo y optimización de scripts en Python y SQL para automatización de procesos y rendimiento.</li>
+      <li>Mantenimiento, refactorización y corrección de errores, garantizando estabilidad y escalabilidad.</li>
+      <li>Dashboards e informes estratégicos en Power BI para apoyar la toma de decisiones.</li>
+      <li>Implementación y pruebas de APIs REST; uso de Docker en entornos en contenedores.</li>
+      <li>Sistemas en producción: e-Contrib (gestión tributaria, factura electrónica de servicios, deuda tributaria, integración SIAFIC) y portales del contribuyente.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Mentor Tech (Proyecto Educativo)</span><br />
+        <span class="job-company">Colegio Luiz Viana Filho <small>· Candeias, BA</small></span></div>
+      <span class="period">2025</span>
+    </div>
+    <ul>
+      <li>Guía de 6 equipos en la creación de sitios web, sistemas y soluciones digitales, incluidos proyectos con Arduino.</li>
+      <li>Enseñanza de lógica de programación y buenas prácticas de desarrollo.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Analista de Soporte</span><span class="badge promo">Ascenso</span><br />
+        <span class="job-company">Keep Informática</span></div>
+      <span class="period">11/2022 - 08/2023</span>
+    </div>
+    <ul>
+      <li>Diagnóstico y resolución de incidentes en sistemas corporativos.</li>
+      <li>Pruebas funcionales y de rendimiento; mantenimiento y ajustes en el código fuente.</li>
+      <li>Documentación técnica y capacitación de usuarios en seguridad de la información.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Soporte Técnico</span><br />
+        <span class="job-company">Keep Informática</span></div>
+      <span class="period">09/2020 - 10/2022</span>
+    </div>
+    <ul>
+      <li>Soporte a clientes internos y externos con foco en alta disponibilidad de los sistemas.</li>
+      <li>Análisis de fallas y pruebas para identificar cuellos de botella; documentación de procesos.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-head">
+      <div><span class="job-title">Pasante de Soporte Técnico</span><br />
+        <span class="job-company">Chevrolet Retirauto Salvador</span></div>
+      <span class="period">02/2019 - 06/2019</span>
+    </div>
+    <ul>
+      <li>Help desk y service desk, copias de seguridad y restauración de datos, monitoreo de redes.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Proyectos destacados</h2>
+  <div class="projects">
+    <div class="project"><b>AgendaAI</b> · <a class="link" href="https://www.agendaaiweb.com.br/">agendaaiweb.com.br</a>
+      <p>SaaS de agendamiento en línea y por WhatsApp para salones, clínicas e independientes, con asistente inteligente.</p></div>
+    <div class="project"><b>e-Contrib</b> · <a class="link" href="https://www.e-contrib.com.br/">e-contrib.com.br</a>
+      <p>Gestión tributaria municipal: tributos, factura electrónica de servicios (NFS-e), deuda tributaria e integración con SIAFIC.</p></div>
+    <div class="project"><b>NFS-e y Portal del Contribuyente</b> · <a class="link" href="https://www.e-contrib.com.br/nfs-e/login">e-contrib.com.br/nfs-e</a>
+      <p>Diseño de la pantalla de login de NFS-e y portal municipal de boletas, certificados y validación de documentos.</p></div>
+    <div class="project"><b>API CNAE del IBGE</b> · <a class="link" href="https://github.com/VenturaCerqueira/API-CNAE-IBGE-TS">GitHub</a>
+      <p>API en TypeScript/Node.js que consume y formatea datos de la CNAE, con documentación Swagger.</p></div>
+    <div class="project"><b>Scraping de eSocial</b> · <a class="link" href="https://github.com/VenturaCerqueira/Scraping-eSocial">GitHub</a>
+      <p>Extracción automatizada en Python con reanudación del progreso, tolerancia a fallos y exportación CSV.</p></div>
+    <div class="project"><b>Generador de esquema MySQL → Markdown</b> · <a class="link" href="https://github.com/VenturaCerqueira/Scraping-banco-relacao">GitHub</a>
+      <p>Extrae metadatos de tablas y columnas y genera documentación de base de datos en Markdown.</p></div>
+  </div>
+</section>
+
+<section class="two">
+  <div>
+    <h2>Formación académica</h2>
+    <div class="edu">
+      <div><b>Licenciatura en Ingeniería de Software</b><br /><span class="muted">UCSAL, Universidad Católica de Salvador · finalización prevista 07/2029</span></div>
+      <div><b>Posgrado en BI, Big Data y Analytics</b><br /><span class="muted">UNOPAR, Universidad Norte de Paraná · finalizado</span></div>
+      <div><b>Tecnicatura en Análisis y Desarrollo de Sistemas</b><br /><span class="muted">Faculdade São Salvador · finalizada</span></div>
+    </div>
+  </div>
+  <div>
+    <h2>Cursos</h2>
+    <div class="chips">
+      <span>Proyectos Ágiles con Scrum</span><span>PHP y Laravel (Udemy)</span><span>Algoritmos y Estructuras de Datos</span>
+      <span>Introducción a Git y GitHub</span><span>Modelado de Datos</span><span>Fundamentos de Redes (Cisco / SENAI)</span>
+    </div>
+    <h2 style="margin-top:10px">Idiomas</h2>
+    <p><b>Portugués:</b> nativo · <b>Inglés:</b> técnico (lectura de documentación) · <b>Español:</b> básico (lectura)</p>
+  </div>
+</section>
+
+<footer>Portafolio con proyectos, capturas de los sistemas y casos de estudio: <b><a href="https://venturacerqueira.github.io/es/">venturacerqueira.github.io/es</a></b></footer>
+
+</body>
+</html>
