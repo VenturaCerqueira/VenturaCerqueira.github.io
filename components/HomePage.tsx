@@ -55,7 +55,7 @@ export function HomePage({ lang }: { lang: Lang }) {
     ui, aiExperience, careerSteps, company, courses, education, experience, featuredProjects, highlights, languages,
     levelEvidence, marqueeOrgs, marqueeTech, openSource, profile, recruiterSummary, services, skills,
   } = t;
-  const DOT_ICONS = { inicio: "terminal", projetos: "rocket", casos: "book", ia: "sparkles", nivel: "trend", devtis: "building", experiencia: "briefcase", stack: "layers", sobre: "user", contato: "mail" } as const;
+  const DOT_ICONS = { inicio: "terminal", sobre: "user", projetos: "rocket", casos: "book", ia: "sparkles", nivel: "trend", devtis: "building", experiencia: "briefcase", stack: "layers", contato: "mail" } as const;
   const sectionDots = (Object.keys(DOT_ICONS) as (keyof typeof DOT_ICONS)[]).map((id) => ({ id, label: ui.dots[id], icon: DOT_ICONS[id] }));
   const articles = getArticles();
   const c = profile.contacts;
@@ -195,7 +195,7 @@ export function HomePage({ lang }: { lang: Lang }) {
 
           {/* convite para continuar: deixa claro que há mais conteúdo abaixo */}
           <div className="mx-auto max-w-6xl px-4 pb-10 sm:px-6">
-            <a href="#projetos" className="group flex items-center gap-4 text-center">
+            <a href="#sobre" className="group flex items-center gap-4 text-center">
               <span className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-border" />
               <span className="flex flex-col items-center gap-1.5">
                 <span className="text-sm font-bold">{ui.moreBelow}</span>
@@ -217,6 +217,142 @@ export function HomePage({ lang }: { lang: Lang }) {
           <Marquee items={marqueeOrgs} variant="text" />
           <div className="mt-5"><Marquee items={marqueeTech} variant="chip" slow /></div>
         </section>
+
+        {/* SOBRE */}
+        <Section id="sobre" alt kicker={ui.aboutKicker} title={<>{ui.aboutTitleA}<span className="text-gradient">Anderson</span></>}>
+          {/* código + história */}
+          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
+            <div className="reveal reveal-left">
+              <CodeIntro role={profile.role} location={profile.location} studying={`${education[0].title} · UCSAL`} />
+              <TerminalTrigger label={ui.footer.terminalHint}
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-border px-3 py-2 font-mono text-xs text-muted transition hover:border-accent hover:text-accent" />
+            </div>
+            <div className="reveal reveal-right">
+              {hasPublicFile(profile.photoAbout) && (
+                <div className="group mb-6 aspect-[16/9] overflow-hidden rounded-2xl border border-border">
+                  <Photo src={profile.photoAbout} alt={`${profile.shortName} ${ui.photoAboutAlt}`} initials="AV" className="transition duration-700 group-hover:scale-105" />
+                </div>
+              )}
+              {(() => {
+                const cut = profile.summary.indexOf(". ");
+                const sentences = cut > 0 ? [profile.summary.slice(0, cut + 1), profile.summary.slice(cut + 2)] : [profile.summary, ""];
+                const terms = ["Python", "Node.js", "SQL", "APIs REST", "REST APIs", "Docker", "backend"];
+                const mark = (text: string) =>
+                  text.split(new RegExp(`(${terms.map((x) => x.replace(".", "\\.")).join("|")})`, "g")).map((part, k) =>
+                    terms.includes(part)
+                      ? <span key={k} className="rounded-md bg-accent-soft px-1.5 py-0.5 font-semibold text-accent">{part}</span>
+                      : part,
+                  );
+                return (
+                  <>
+                    <p className="text-xl font-semibold leading-relaxed tracking-tight">{mark(sentences[0].trim())}</p>
+                    <p className="mt-4 leading-relaxed text-muted">{mark(sentences.slice(1).join(" ").trim())}</p>
+                  </>
+                );
+              })()}
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {([
+                  ["pin", profile.location],
+                  ["clock", ui.aboutFacts[0]],
+                  ["cap", ui.aboutFacts[1]],
+                  ["building", ui.aboutFacts[2]],
+                  ["globe", ui.aboutFacts[3]],
+                ] as const).map(([icon, label], fi) => (
+                  <li key={label} style={{ animationDelay: `${fi * 120}ms` }}
+                    className="about-chip group/item flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-sm font-medium transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">
+                    <NavIcon name={icon} size={15} className="text-accent" /> {label}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a href="#contato" className={btnPrimary}>{ui.aboutCta} <span className="arrow-nudge" aria-hidden>→</span></a>
+                <a href={c.linkedin} {...ext} className={btnGhost}><SocialIcon name="linkedin" className="text-[#0a66c2]" /> LinkedIn</a>
+              </div>
+            </div>
+          </div>
+
+          {/* como eu trabalho */}
+          <h3 className="reveal mb-6 mt-20 text-center text-2xl font-extrabold tracking-tight">{ui.aboutValuesTitle}</h3>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {ui.aboutValues.map((v, vi) => (
+              <div key={v.title} style={{ transitionDelay: `${vi * 90}ms` }}
+                className="reveal group relative overflow-hidden rounded-2xl border border-border bg-surface p-6 transition hover:-translate-y-1 hover:border-accent hover:shadow-xl hover:shadow-accent/10">
+                <span className="absolute -right-2 -top-4 select-none text-7xl font-extrabold text-accent/[0.07] transition duration-500 group-hover:text-accent/15" aria-hidden>
+                  {String(vi + 1).padStart(2, "0")}
+                </span>
+                <span className="ico-box relative grid h-12 w-12 place-items-center rounded-xl bg-accent-soft text-accent">
+                  <Icon name={(["compass", "automation", "chart", "sparkles"] as const)[vi]} className="h-6 w-6" />
+                </span>
+                <h4 className="relative mt-4 font-bold">{v.title}</h4>
+                <p className="relative mt-2 text-sm leading-relaxed text-muted">{v.text}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* formação + cursos e idiomas */}
+          <div className="mt-20 grid gap-8 lg:grid-cols-[1.15fr_1fr]">
+            <div className="reveal reveal-left rounded-3xl border border-border bg-surface p-6 sm:p-8">
+              <h3 className="mb-6 flex items-center gap-2 text-lg font-bold">
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent"><NavIcon name="cap" size={18} /></span>
+                {ui.educationTitle}
+              </h3>
+              <ol className="relative space-y-6 border-l-2 border-dashed border-border pl-7">
+                {education.map((e) => (
+                  <li key={e.title} className="group/item relative">
+                    <span className={`absolute -left-[41px] top-0 grid h-7 w-7 place-items-center rounded-full border-4 border-surface text-white ${e.done ? "bg-teal" : "bg-accent"}`}>
+                      {!e.done && <span className="absolute inset-0 animate-ping rounded-full bg-accent/40" aria-hidden />}
+                      {e.done
+                        ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+                        : <NavIcon name="cap" size={12} className="relative" />}
+                    </span>
+                    <h4 className="font-bold transition group-hover/item:text-accent">{e.title}</h4>
+                    <p className="text-sm text-muted">{e.school}</p>
+                    <p className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${e.done ? "bg-teal/10 text-teal" : "bg-accent-soft text-accent"}`}>
+                      <span className={`h-1.5 w-1.5 rounded-full ${e.done ? "bg-teal" : "animate-pulse bg-accent"}`} />{e.status}
+                    </p>
+                    {!e.done && <div className="mt-3 h-1.5 w-full max-w-xs overflow-hidden rounded-full bg-accent-soft"><div className="edu-progress h-full w-1/3 rounded-full bg-gradient-to-r from-accent to-accent-2" /></div>}
+                  </li>
+                ))}
+              </ol>
+            </div>
+
+            <div className="reveal reveal-right grid gap-6">
+              <div className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold">
+                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent"><NavIcon name="book" size={18} /></span>
+                  {ui.courses}
+                </h3>
+                <ul className="flex flex-wrap gap-2">
+                  {courses.map((x) => (
+                    <li key={x} className="cursor-default rounded-xl border border-border bg-bg px-3 py-1.5 text-sm transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">{x}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold">
+                  <span className="group grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent"><NavIcon name="globe" size={18} /></span>
+                  {ui.languages}
+                </h3>
+                <ul className="space-y-4">
+                  {languages.map((l) => (
+                    <li key={l.name} className="group/lang flex items-center gap-3">
+                      <Flag code={l.flag} width={30} className="transition duration-300 group-hover/lang:-rotate-6 group-hover/lang:scale-110" />
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-semibold">{l.name}</span>
+                        <span className="block text-sm text-muted">{l.level}</span>
+                      </span>
+                      <span className="flex gap-1" aria-hidden>
+                        {[1, 2, 3].map((d) => (
+                          <span key={d} className={`h-2.5 w-2.5 rounded-full transition duration-300 group-hover/lang:scale-125 ${d <= l.dots ? "bg-gradient-to-br from-accent to-teal" : "bg-border"}`} />
+                        ))}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </Section>
 
         {/* PROJETOS */}
         <Section id="projetos" kicker={ui.projKicker} title={<>{ui.projTitleA}<span className="text-gradient">{ui.projTitleB}</span></>}
@@ -403,142 +539,6 @@ export function HomePage({ lang }: { lang: Lang }) {
                 </ul>
               </div>
             ))}
-          </div>
-        </Section>
-
-        {/* SOBRE */}
-        <Section id="sobre" alt kicker={ui.aboutKicker} title={<>{ui.aboutTitleA}<span className="text-gradient">Anderson</span></>}>
-          {/* código + história */}
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
-            <div className="reveal reveal-left">
-              <CodeIntro role={profile.role} location={profile.location} studying={`${education[0].title} · UCSAL`} />
-              <TerminalTrigger label={ui.footer.terminalHint}
-                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-border px-3 py-2 font-mono text-xs text-muted transition hover:border-accent hover:text-accent" />
-            </div>
-            <div className="reveal reveal-right">
-              {hasPublicFile(profile.photoAbout) && (
-                <div className="group mb-6 aspect-[16/9] overflow-hidden rounded-2xl border border-border">
-                  <Photo src={profile.photoAbout} alt={`${profile.shortName} ${ui.photoAboutAlt}`} initials="AV" className="transition duration-700 group-hover:scale-105" />
-                </div>
-              )}
-              {(() => {
-                const cut = profile.summary.indexOf(". ");
-                const sentences = cut > 0 ? [profile.summary.slice(0, cut + 1), profile.summary.slice(cut + 2)] : [profile.summary, ""];
-                const terms = ["Python", "Node.js", "SQL", "APIs REST", "REST APIs", "Docker", "backend"];
-                const mark = (text: string) =>
-                  text.split(new RegExp(`(${terms.map((x) => x.replace(".", "\\.")).join("|")})`, "g")).map((part, k) =>
-                    terms.includes(part)
-                      ? <span key={k} className="rounded-md bg-accent-soft px-1.5 py-0.5 font-semibold text-accent">{part}</span>
-                      : part,
-                  );
-                return (
-                  <>
-                    <p className="text-xl font-semibold leading-relaxed tracking-tight">{mark(sentences[0].trim())}</p>
-                    <p className="mt-4 leading-relaxed text-muted">{mark(sentences.slice(1).join(" ").trim())}</p>
-                  </>
-                );
-              })()}
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {([
-                  ["pin", profile.location],
-                  ["clock", ui.aboutFacts[0]],
-                  ["cap", ui.aboutFacts[1]],
-                  ["building", ui.aboutFacts[2]],
-                  ["globe", ui.aboutFacts[3]],
-                ] as const).map(([icon, label], fi) => (
-                  <li key={label} style={{ animationDelay: `${fi * 120}ms` }}
-                    className="about-chip group/item flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1.5 text-sm font-medium transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">
-                    <NavIcon name={icon} size={15} className="text-accent" /> {label}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a href="#contato" className={btnPrimary}>{ui.aboutCta} <span className="arrow-nudge" aria-hidden>→</span></a>
-                <a href={c.linkedin} {...ext} className={btnGhost}><SocialIcon name="linkedin" className="text-[#0a66c2]" /> LinkedIn</a>
-              </div>
-            </div>
-          </div>
-
-          {/* como eu trabalho */}
-          <h3 className="reveal mb-6 mt-20 text-center text-2xl font-extrabold tracking-tight">{ui.aboutValuesTitle}</h3>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {ui.aboutValues.map((v, vi) => (
-              <div key={v.title} style={{ transitionDelay: `${vi * 90}ms` }}
-                className="reveal group relative overflow-hidden rounded-2xl border border-border bg-surface p-6 transition hover:-translate-y-1 hover:border-accent hover:shadow-xl hover:shadow-accent/10">
-                <span className="absolute -right-2 -top-4 select-none text-7xl font-extrabold text-accent/[0.07] transition duration-500 group-hover:text-accent/15" aria-hidden>
-                  {String(vi + 1).padStart(2, "0")}
-                </span>
-                <span className="ico-box relative grid h-12 w-12 place-items-center rounded-xl bg-accent-soft text-accent">
-                  <Icon name={(["compass", "automation", "chart", "sparkles"] as const)[vi]} className="h-6 w-6" />
-                </span>
-                <h4 className="relative mt-4 font-bold">{v.title}</h4>
-                <p className="relative mt-2 text-sm leading-relaxed text-muted">{v.text}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* formação + cursos e idiomas */}
-          <div className="mt-20 grid gap-8 lg:grid-cols-[1.15fr_1fr]">
-            <div className="reveal reveal-left rounded-3xl border border-border bg-surface p-6 sm:p-8">
-              <h3 className="mb-6 flex items-center gap-2 text-lg font-bold">
-                <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent"><NavIcon name="cap" size={18} /></span>
-                {ui.educationTitle}
-              </h3>
-              <ol className="relative space-y-6 border-l-2 border-dashed border-border pl-7">
-                {education.map((e) => (
-                  <li key={e.title} className="group/item relative">
-                    <span className={`absolute -left-[41px] top-0 grid h-7 w-7 place-items-center rounded-full border-4 border-surface text-white ${e.done ? "bg-teal" : "bg-accent"}`}>
-                      {!e.done && <span className="absolute inset-0 animate-ping rounded-full bg-accent/40" aria-hidden />}
-                      {e.done
-                        ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
-                        : <NavIcon name="cap" size={12} className="relative" />}
-                    </span>
-                    <h4 className="font-bold transition group-hover/item:text-accent">{e.title}</h4>
-                    <p className="text-sm text-muted">{e.school}</p>
-                    <p className={`mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${e.done ? "bg-teal/10 text-teal" : "bg-accent-soft text-accent"}`}>
-                      <span className={`h-1.5 w-1.5 rounded-full ${e.done ? "bg-teal" : "animate-pulse bg-accent"}`} />{e.status}
-                    </p>
-                    {!e.done && <div className="mt-3 h-1.5 w-full max-w-xs overflow-hidden rounded-full bg-accent-soft"><div className="edu-progress h-full w-1/3 rounded-full bg-gradient-to-r from-accent to-accent-2" /></div>}
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <div className="reveal reveal-right grid gap-6">
-              <div className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
-                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent"><NavIcon name="book" size={18} /></span>
-                  {ui.courses}
-                </h3>
-                <ul className="flex flex-wrap gap-2">
-                  {courses.map((x) => (
-                    <li key={x} className="cursor-default rounded-xl border border-border bg-bg px-3 py-1.5 text-sm transition hover:-translate-y-0.5 hover:border-accent hover:text-accent">{x}</li>
-                  ))}
-                </ul>
-              </div>
-              <div className="rounded-3xl border border-border bg-surface p-6 sm:p-8">
-                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold">
-                  <span className="group grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent"><NavIcon name="globe" size={18} /></span>
-                  {ui.languages}
-                </h3>
-                <ul className="space-y-4">
-                  {languages.map((l) => (
-                    <li key={l.name} className="group/lang flex items-center gap-3">
-                      <Flag code={l.flag} width={30} className="transition duration-300 group-hover/lang:-rotate-6 group-hover/lang:scale-110" />
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-semibold">{l.name}</span>
-                        <span className="block text-sm text-muted">{l.level}</span>
-                      </span>
-                      <span className="flex gap-1" aria-hidden>
-                        {[1, 2, 3].map((d) => (
-                          <span key={d} className={`h-2.5 w-2.5 rounded-full transition duration-300 group-hover/lang:scale-125 ${d <= l.dots ? "bg-gradient-to-br from-accent to-teal" : "bg-border"}`} />
-                        ))}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
           </div>
         </Section>
 
