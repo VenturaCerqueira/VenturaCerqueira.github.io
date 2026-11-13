@@ -20,15 +20,7 @@ export function RevealObserver() {
       { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
     );
     els.forEach((e) => io.observe(e));
-
-    // Animações contínuas só rodam na seção visível: as outras ficam pausadas (economiza CPU e bateria).
-    const zones = document.querySelectorAll<HTMLElement>("main > section, footer");
-    const pause = new IntersectionObserver(
-      (entries) => entries.forEach((en) => en.target.classList.toggle("offscreen", !en.isIntersecting)),
-      { rootMargin: "200px 0px" },
-    );
-    zones.forEach((z) => pause.observe(z));
-    return () => { io.disconnect(); pause.disconnect(); };
+    return () => io.disconnect();
   }, []);
   return null;
 }

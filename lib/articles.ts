@@ -9,7 +9,8 @@ import { marked } from "marked";
     description: ...
     date: 2026-11-13
     tags: Python, IA
-    draft: true        <- rascunho: aparece só no localhost (npm run dev), nunca no site publicado
+    draft: true        <- rascunho: aparece só no localhost (npm run dev), nunca no site publicado.
+                          Atenção: o arquivo .md fica no repositório (público) se for commitado.
     ---
   Para publicar, troque para "draft: false" (ou apague a linha) e faça git push.
 */

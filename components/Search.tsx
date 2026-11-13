@@ -100,7 +100,7 @@ export function Search({ items, t }: { items: SearchItem[]; t: UI["search"] }) {
           <circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" />
         </svg>
         <span className="hidden 2xl:inline">{t.label}</span>
-        <kbd className="hidden whitespace-nowrap rounded-md border border-border bg-bg px-1.5 py-0.5 font-mono text-[10px] font-semibold xl:inline">Ctrl K</kbd>
+        <kbd aria-hidden="true" className="hidden whitespace-nowrap rounded-md border border-border bg-bg px-1.5 py-0.5 font-mono text-[10px] font-semibold xl:inline">Ctrl K</kbd>
       </button>
 
       {open && createPortal(

@@ -320,8 +320,8 @@ main { overflow-x: clip; }
 .case-panel:not([hidden]) .case-step:nth-child(4) { animation-delay: .24s; }
 @keyframes case-in { from { opacity: 0; transform: translateY(10px); } }
 
-/* ===== Desempenho: seções fora da tela não animam ===== */
-.offscreen *, .offscreen *::before, .offscreen *::after { animation-play-state: paused !important; }
+/* ===== Desempenho: o navegador não desenha nem anima seções fora da tela (nativo, sem custo de JS) ===== */
+main > section:not(:first-child), footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 
 /* terminal */
 .term-in { animation: pop-in .22s ease-out; }

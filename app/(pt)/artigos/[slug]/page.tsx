@@ -43,7 +43,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <article>
             {a.draft && (
               <p className="mb-6 rounded-xl border border-dashed border-[#f5a524] bg-[#f5a524]/10 px-4 py-2 text-sm font-semibold text-[#b26b00]">
-                Rascunho: visível só no seu computador. Para publicar, troque para <code>draft: false</code>.
+                Rascunho: não aparece no site publicado. Para publicar, troque para <code>draft: false</code>.
               </p>
             )}
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">{a.tags.join(" · ")}</p>
