@@ -55,7 +55,7 @@ export function HomePage({ lang }: { lang: Lang }) {
     ui, aiExperience, careerSteps, company, courses, education, experience, featuredProjects, highlights, languages,
     levelEvidence, marqueeOrgs, marqueeTech, openSource, profile, recruiterSummary, services, skills,
   } = t;
-  const DOT_ICONS = { inicio: "terminal", sobre: "user", projetos: "rocket", casos: "book", ia: "sparkles", nivel: "trend", devtis: "building", experiencia: "briefcase", stack: "layers", contato: "mail" } as const;
+  const DOT_ICONS = { inicio: "terminal", sobre: "user", stack: "layers", projetos: "rocket", casos: "book", ia: "sparkles", nivel: "trend", devtis: "building", experiencia: "briefcase", contato: "mail" } as const;
   const sectionDots = (Object.keys(DOT_ICONS) as (keyof typeof DOT_ICONS)[]).map((id) => ({ id, label: ui.dots[id], icon: DOT_ICONS[id] }));
   const articles = getArticles();
   const c = profile.contacts;
@@ -354,8 +354,43 @@ export function HomePage({ lang }: { lang: Lang }) {
           </div>
         </Section>
 
+        {/* STACK */}
+        <Section id="stack" kicker={ui.stackKicker} title={<>{ui.stackTitleA}<span className="text-gradient">{ui.stackTitleB}</span></>}>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((s, i) => (
+              <div key={s.title} style={{ transitionDelay: `${(i % 3) * 90}ms` }} className="reveal group rounded-2xl border border-border bg-surface p-6 hover:border-accent">
+                <span className="ico-box grid h-12 w-12 place-items-center rounded-xl bg-accent-soft text-accent">
+                  <Icon name={s.icon} className="h-6 w-6" />
+                </span>
+                <h3 className="mt-4 font-bold">{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{s.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="reveal mt-12 grid gap-6 rounded-3xl border border-border bg-surface p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-3">
+            {skills.map((s) => (
+              <div key={s.group} className="group">
+                <h3 className="mb-3 flex items-center gap-2 text-sm font-bold">
+                  <span className="ico-box grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent">
+                    <Icon name={s.icon} className="h-5 w-5" />
+                  </span>
+                  {s.group}
+                </h3>
+                <ul className="flex flex-wrap gap-2">
+                  {s.items.map((i) => (
+                    <li key={i} className="group/tech flex cursor-default items-center gap-2 rounded-xl border border-border bg-bg py-1.5 pl-2 pr-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md hover:shadow-accent/10">
+                      <TechIcon name={i} />
+                      {ui.techNames[i] ?? i}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </Section>
+
         {/* PROJETOS */}
-        <Section id="projetos" kicker={ui.projKicker} title={<>{ui.projTitleA}<span className="text-gradient">{ui.projTitleB}</span></>}
+        <Section id="projetos" alt kicker={ui.projKicker} title={<>{ui.projTitleA}<span className="text-gradient">{ui.projTitleB}</span></>}
           intro={ui.projIntro}>
           <ProjectFilter labels={ui.filters} counts={{
             all: featuredProjects.length + openSource.length,
@@ -381,7 +416,7 @@ export function HomePage({ lang }: { lang: Lang }) {
         </Section>
 
         {/* ESTUDOS DE CASO */}
-        <Section id="casos" alt kicker={ui.cases.kicker} title={<>{ui.cases.titleA}<span className="text-gradient">{ui.cases.titleB}</span></>} intro={ui.cases.intro}>
+        <Section id="casos" kicker={ui.cases.kicker} title={<>{ui.cases.titleA}<span className="text-gradient">{ui.cases.titleB}</span></>} intro={ui.cases.intro}>
           <CaseStudies cases={CASES[lang]} ui={ui} />
         </Section>
 
@@ -505,41 +540,6 @@ export function HomePage({ lang }: { lang: Lang }) {
         {/* EXPERIÊNCIA */}
         <Section id="experiencia" alt kicker={ui.expKicker} title={<>{ui.expTitleA}<span className="text-gradient">{ui.expTitleB}</span></>}>
           <ExperienceTimeline jobs={experience} ui={ui} />
-        </Section>
-
-        {/* STACK */}
-        <Section id="stack" kicker={ui.stackKicker} title={<>{ui.stackTitleA}<span className="text-gradient">{ui.stackTitleB}</span></>}>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => (
-              <div key={s.title} style={{ transitionDelay: `${(i % 3) * 90}ms` }} className="reveal group rounded-2xl border border-border bg-surface p-6 hover:border-accent">
-                <span className="ico-box grid h-12 w-12 place-items-center rounded-xl bg-accent-soft text-accent">
-                  <Icon name={s.icon} className="h-6 w-6" />
-                </span>
-                <h3 className="mt-4 font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{s.text}</p>
-              </div>
-            ))}
-          </div>
-          <div className="reveal mt-12 grid gap-6 rounded-3xl border border-border bg-surface p-6 sm:grid-cols-2 sm:p-8 lg:grid-cols-3">
-            {skills.map((s) => (
-              <div key={s.group} className="group">
-                <h3 className="mb-3 flex items-center gap-2 text-sm font-bold">
-                  <span className="ico-box grid h-9 w-9 place-items-center rounded-lg bg-accent-soft text-accent">
-                    <Icon name={s.icon} className="h-5 w-5" />
-                  </span>
-                  {s.group}
-                </h3>
-                <ul className="flex flex-wrap gap-2">
-                  {s.items.map((i) => (
-                    <li key={i} className="group/tech flex cursor-default items-center gap-2 rounded-xl border border-border bg-bg py-1.5 pl-2 pr-3 text-sm font-medium transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md hover:shadow-accent/10">
-                      <TechIcon name={i} />
-                      {ui.techNames[i] ?? i}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
         </Section>
 
         {/* ARTIGOS (aparece só quando há artigos; rascunhos só no localhost) */}
