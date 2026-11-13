@@ -68,7 +68,7 @@ export function HomePage({ lang }: { lang: Lang }) {
     { label: "Instagram", value: "@andersonventuracerqueira", href: c.instagram, external: true, icon: "instagram" as const, wide: true },
   ];
   const secondaryCta = hasResume
-    ? <a href={profile.resumePath} download data-goatcounter-click="curriculo-hero" className={btnGhost}>{ui.downloadCvPdf}</a>
+    ? <a href={profile.resumePath} download data-goatcounter-click="curriculo-hero" className={`group ${btnGhost}`}><NavIcon name="file" size={16} className="text-accent" /> {ui.docs.cvShort}</a>
     : <a href={c.linkedin} {...ext} data-goatcounter-click="linkedin-hero" className={btnGhost}><SocialIcon name="linkedin" className="text-[#0a66c2]" /> {ui.seeLinkedin}</a>;
 
   return (
@@ -143,13 +143,12 @@ export function HomePage({ lang }: { lang: Lang }) {
               <div className="reveal mt-8 flex flex-wrap gap-3 [transition-delay:320ms]">
                 <a href="#projetos" className={btnPrimary}>{ui.seeProjects} <span className="arrow-nudge" aria-hidden>→</span></a>
                 {secondaryCta}
+                {hasLetter && (
+                  <a href={profile.coverLetterPath} download data-goatcounter-click="carta-hero" className={`group ${btnGhost}`}>
+                    <NavIcon name="mail" size={16} className="text-accent" /> {ui.docs.letterShort}
+                  </a>
+                )}
               </div>
-              {hasLetter && (
-                <a href={profile.coverLetterPath} download data-goatcounter-click="carta-hero"
-                  className="reveal mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline [transition-delay:340ms]">
-                  <NavIcon name="mail" size={14} /> {ui.coverLetter}
-                </a>
-              )}
               <p className="reveal mt-4 flex items-center gap-2 text-xs text-muted [transition-delay:360ms]">
                 <Icon name="pin" className="h-4 w-4 text-accent" /> {profile.location} · {ui.workMode}
               </p>
@@ -582,17 +581,38 @@ export function HomePage({ lang }: { lang: Lang }) {
                     ))}
                   </dl>
                 </div>
-                <div className="mt-8 flex flex-wrap gap-3">
+                <div className="mt-6 grid grid-cols-2 gap-3">
                   {profile.calLink && (
-                    <a href={profile.calLink} {...ext} data-goatcounter-click="agendar-conversa" className="group inline-flex items-center gap-2 rounded-full bg-[#0f1222] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5">
-                      <NavIcon name="clock" size={16} className="text-[#5eead4]" /> {ui.hiring.schedule}
+                    <a href={profile.calLink} {...ext} data-goatcounter-click="agendar-conversa" className="group col-span-2 inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-accent shadow-lg transition hover:-translate-y-0.5">
+                      <NavIcon name="clock" size={16} /> {ui.hiring.schedule} <span className="arrow-nudge" aria-hidden>→</span>
                     </a>
                   )}
-                  <a href={c.whatsappHref} {...ext} data-goatcounter-click="whatsapp-contato" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-accent shadow-lg transition hover:-translate-y-0.5"><SocialIcon name="whatsapp" className="text-[#25D366] transition group-hover:scale-110" /> {ui.contactWhatsapp} <span className="arrow-nudge" aria-hidden>→</span></a>
-                  <a href={`mailto:${c.email}`} className="group inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10"><SocialIcon name="mail" className="transition group-hover:scale-110" /> {ui.contactEmail}</a>
-                  {hasResume && <a href={profile.resumePath} download data-goatcounter-click="curriculo-contato" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10">{ui.contactCv}</a>}
-                  {hasLetter && <a href={profile.coverLetterPath} download data-goatcounter-click="carta-contato" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10">{ui.coverLetter}</a>}
+                  <a href={c.whatsappHref} {...ext} data-goatcounter-click="whatsapp-contato" className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold transition hover:bg-white/10"><SocialIcon name="whatsapp" className="transition group-hover:scale-110" /> WhatsApp</a>
+                  <a href={`mailto:${c.email}`} className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold transition hover:bg-white/10"><SocialIcon name="mail" className="transition group-hover:scale-110" /> {ui.emailLabel}</a>
                 </div>
+                {(hasResume || hasLetter) && (
+                  <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+                    <p className="text-[11px] font-bold uppercase tracking-widest text-white/75">{ui.docs.title}</p>
+                    <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                      {([
+                        hasResume && { href: profile.resumePath, title: ui.docs.cv, meta: ui.docs.cvMeta, icon: "file" as const, ev: "curriculo-contato" },
+                        hasLetter && { href: profile.coverLetterPath, title: ui.docs.letter, meta: ui.docs.letterMeta, icon: "mail" as const, ev: "carta-contato" },
+                      ].filter(Boolean) as { href: string; title: string; meta: string; icon: "file" | "mail"; ev: string }[]).map((d) => (
+                        <a key={d.href} href={d.href} download data-goatcounter-click={d.ev}
+                          className="group flex items-center gap-3 rounded-xl border border-white/20 bg-white/10 p-3 transition hover:-translate-y-0.5 hover:bg-white hover:text-accent">
+                          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-white/15 transition group-hover:bg-accent group-hover:text-white">
+                            <NavIcon name={d.icon} size={18} />
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block text-sm font-semibold">{d.title}</span>
+                            <span className="block text-xs opacity-75">{d.meta}</span>
+                          </span>
+                          <NavIcon name="download" size={18} className="opacity-70 transition group-hover:translate-y-0.5 group-hover:opacity-100" />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {contactCards.map((k) => (
