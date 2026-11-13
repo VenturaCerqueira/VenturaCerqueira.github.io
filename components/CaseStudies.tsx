@@ -31,7 +31,7 @@ export function CaseStudies({ cases, ui }: { cases: CaseStudy[]; ui: UI }) {
       </div>
 
       {cases.map((c, i) => (
-        <article key={c.id} id={`case-${c.id}`} role="tabpanel" aria-labelledby={`tab-${c.id}`} hidden={i !== active}
+        <div key={c.id} id={`case-${c.id}`} role="tabpanel" aria-labelledby={`tab-${c.id}`} hidden={i !== active}
           className="case-panel grid gap-8 rounded-3xl border border-border bg-surface p-6 shadow-xl shadow-accent/5 sm:p-8 lg:grid-cols-[1fr_1.15fr]">
           {/* lado visual */}
           <div className="flex flex-col gap-4">
@@ -127,7 +127,7 @@ export function CaseStudies({ cases, ui }: { cases: CaseStudy[]; ui: UI }) {
               ))}
             </div>
           </div>
-        </article>
+        </div>
       ))}
     </div>
   );

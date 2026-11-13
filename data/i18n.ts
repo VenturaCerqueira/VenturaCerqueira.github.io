@@ -69,6 +69,7 @@ const pt = {
   courses: "Cursos",
   languages: "Idiomas",
   photoAboutAlt: "em atuação",
+  articles: { kicker: "Artigos", titleA: "O que eu ", titleB: "escrevo", intro: "Textos curtos sobre automação, IA e carreira em desenvolvimento.", read: "Ler artigo", min: "min de leitura", pt: "", draft: "Rascunho" },
   aboutValuesTitle: "Como eu trabalho",
   aboutValues: [
     { title: "Analítico", text: "Entendo o problema antes do código: requisitos, dados e impacto no negócio." },
@@ -87,7 +88,7 @@ const pt = {
   emailLabel: "E-mail",
   companySuffix: "(empresa)",
   whatsappAria: "Conversar no WhatsApp",
-  footer: { tagline: "Backend, automação e IA aplicada para sistemas que rodam em produção.", nav: "Navegação", projects: "Projetos", contact: "Contato", language: "Idioma", localTime: "Horário em Salvador", builtWith: "Feito com Next.js e Tailwind CSS", rights: "Todos os direitos reservados." },
+  footer: { tagline: "Backend, automação e IA aplicada para sistemas que rodam em produção.", nav: "Navegação", projects: "Projetos", contact: "Contato", language: "Idioma", localTime: "Horário em Salvador", terminal: "Abrir o terminal", terminalHint: "Dica: aperte ` para abrir o terminal do portfólio", builtWith: "Feito com Next.js e Tailwind CSS", rights: "Todos os direitos reservados." },
   dots: { inicio: "Início", projetos: "Projetos", casos: "Casos", ia: "IA", nivel: "Nível", devtis: "DevTI's", experiencia: "Experiência", stack: "Stack", sobre: "Sobre", contato: "Contato" },
   nav: {
     projects: "Projetos",
@@ -100,7 +101,7 @@ const pt = {
   },
   theme: "Alternar tema claro/escuro",
   search: {
-    button: "Pesquisar (Ctrl+K)", label: "Buscar", placeholder: "Busque projetos, tecnologias, experiência…",
+    button: "Buscar (Ctrl+K)", label: "Buscar", placeholder: "Busque projetos, tecnologias, experiência…",
     dialog: "Pesquisar no portfólio", suggestions: "Sugestões:", none: "Nada encontrado para",
     navigate: "navegar", open: "abrir", close: "fechar", result: "resultado", results: "resultados",
     groups: { sections: "Seções", projects: "Projetos", ai: "IA", experience: "Experiência", skills: "Competências", contact: "Contato" },
@@ -188,6 +189,7 @@ const en: UI = {
   courses: "Courses",
   languages: "Languages",
   photoAboutAlt: "at work",
+  articles: { kicker: "Articles", titleA: "What I ", titleB: "write", intro: "Short pieces about automation, AI and a career in software development.", read: "Read article", min: "min read", pt: "In Portuguese", draft: "Draft" },
   aboutValuesTitle: "How I work",
   aboutValues: [
     { title: "Analytical", text: "I understand the problem before writing code: requirements, data and business impact." },
@@ -206,7 +208,7 @@ const en: UI = {
   emailLabel: "Email",
   companySuffix: "(company)",
   whatsappAria: "Chat on WhatsApp",
-  footer: { tagline: "Backend, automation and applied AI for systems that run in production.", nav: "Navigation", projects: "Projects", contact: "Contact", language: "Language", localTime: "Local time in Salvador", builtWith: "Built with Next.js and Tailwind CSS", rights: "All rights reserved." },
+  footer: { tagline: "Backend, automation and applied AI for systems that run in production.", nav: "Navigation", projects: "Projects", contact: "Contact", language: "Language", localTime: "Local time in Salvador", terminal: "Open the terminal", terminalHint: "Tip: press ` to open the portfolio terminal", builtWith: "Built with Next.js and Tailwind CSS", rights: "All rights reserved." },
   dots: { inicio: "Home", projetos: "Projects", casos: "Cases", ia: "AI", nivel: "Level", devtis: "DevTI's", experiencia: "Experience", stack: "Stack", sobre: "About", contato: "Contact" },
   nav: {
     projects: "Projects",
@@ -311,6 +313,7 @@ const es: UI = {
   courses: "Cursos",
   languages: "Idiomas",
   photoAboutAlt: "trabajando",
+  articles: { kicker: "Artículos", titleA: "Lo que ", titleB: "escribo", intro: "Textos breves sobre automatización, IA y carrera en desarrollo.", read: "Leer artículo", min: "min de lectura", pt: "En portugués", draft: "Borrador" },
   aboutValuesTitle: "Cómo trabajo",
   aboutValues: [
     { title: "Analítico", text: "Entiendo el problema antes de escribir código: requisitos, datos e impacto en el negocio." },
@@ -329,7 +332,7 @@ const es: UI = {
   emailLabel: "Correo",
   companySuffix: "(empresa)",
   whatsappAria: "Chatear por WhatsApp",
-  footer: { tagline: "Backend, automatización e IA aplicada para sistemas que funcionan en producción.", nav: "Navegación", projects: "Proyectos", contact: "Contacto", language: "Idioma", localTime: "Hora local en Salvador", builtWith: "Hecho con Next.js y Tailwind CSS", rights: "Todos los derechos reservados." },
+  footer: { tagline: "Backend, automatización e IA aplicada para sistemas que funcionan en producción.", nav: "Navegación", projects: "Proyectos", contact: "Contacto", language: "Idioma", localTime: "Hora local en Salvador", terminal: "Abrir la terminal", terminalHint: "Tip: presiona ` para abrir la terminal del portafolio", builtWith: "Hecho con Next.js y Tailwind CSS", rights: "Todos los derechos reservados." },
   dots: { inicio: "Inicio", projetos: "Proyectos", casos: "Casos", ia: "IA", nivel: "Nivel", devtis: "DevTI's", experiencia: "Experiencia", stack: "Stack", sobre: "Sobre mí", contato: "Contacto" },
   nav: {
     projects: "Proyectos",

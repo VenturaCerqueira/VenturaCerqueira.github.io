@@ -12,6 +12,8 @@ import { CodeIntro } from "@/components/CodeIntro";
 import { Footer } from "@/components/Footer";
 import { CaseStudies } from "@/components/CaseStudies";
 import { CASES } from "@/data/content/cases";
+import { Terminal, TerminalTrigger } from "@/components/Terminal";
+import { getArticles } from "@/lib/articles";
 import { Icon } from "@/components/Icon";
 import { CountUp, RevealObserver, Typewriter } from "@/components/Motion";
 import { Photo, hasPublicFile } from "@/components/Photo";
@@ -53,6 +55,7 @@ export function HomePage({ lang }: { lang: Lang }) {
   } = t;
   const DOT_ICONS = { inicio: "terminal", projetos: "rocket", casos: "book", ia: "sparkles", nivel: "trend", devtis: "building", experiencia: "briefcase", stack: "layers", sobre: "user", contato: "mail" } as const;
   const sectionDots = (Object.keys(DOT_ICONS) as (keyof typeof DOT_ICONS)[]).map((id) => ({ id, label: ui.dots[id], icon: DOT_ICONS[id] }));
+  const articles = getArticles();
   const c = profile.contacts;
   const hasResume = hasPublicFile(profile.resumePath);
   const contactCards = [
@@ -79,6 +82,16 @@ export function HomePage({ lang }: { lang: Lang }) {
       <SectionDots items={sectionDots} label={ui.search.groups.sections} />
       <BackToTop label={ui.backToTop} />
       <PixelPet t={ui.pet} />
+      <Terminal data={{
+        lang, name: profile.name, role: profile.role, location: profile.location, summary: profile.summary,
+        email: c.email, whatsapp: c.whatsappDisplay, whatsappHref: c.whatsappHref, linkedin: c.linkedin, github: c.github,
+        resume: hasResume ? profile.resumePath : null,
+        projects: [...featuredProjects, ...openSource].map((p) => ({ title: p.title, href: p.links[0].href, stack: p.stack })),
+        cases: CASES[lang].map((cs) => cs.title),
+        skills: skills.map((s) => ({ group: s.group, items: s.items.map((i) => ui.techNames[i] ?? i) })),
+        jobs: experience.map((j) => ({ role: j.role, company: j.company, period: j.period })),
+        sections: sectionDots.map((d) => ({ id: d.id, label: d.label })),
+      }} />
 
       <main id="conteudo">
         {/* HERO */}
@@ -174,19 +187,19 @@ export function HomePage({ lang }: { lang: Lang }) {
                   ))}
                 </div>
               </div>
-              <dl className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
                 {recruiterSummary.map((r, ri) => (
                   <div key={r.label} className="group/item flex items-start gap-3 bg-surface p-4 transition hover:bg-accent-soft/40">
                     <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent-soft text-accent transition duration-300 group-hover/item:rotate-6 group-hover/item:bg-accent group-hover/item:text-white">
                       <NavIcon name={r.icon} size={18} />
                     </span>
                     <div className="min-w-0">
-                      <dt className="text-[11px] font-semibold uppercase tracking-widest text-muted">{r.label}</dt>
-                      <dd className={`mt-0.5 font-bold ${ri === 0 ? "text-accent" : ""}`}>{r.value}</dd>
+                      <p className="text-[11px] font-semibold uppercase tracking-widest text-muted">{r.label}</p>
+                      <p className={`mt-0.5 font-bold ${ri === 0 ? "text-accent" : ""}`}>{r.value}</p>
                     </div>
                   </div>
                 ))}
-              </dl>
+              </div>
             </div>
           </div>
         </section>
@@ -387,6 +400,8 @@ export function HomePage({ lang }: { lang: Lang }) {
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.05fr]">
             <div className="reveal reveal-left">
               <CodeIntro role={profile.role} location={profile.location} studying={`${education[0].title} · UCSAL`} />
+              <TerminalTrigger label={ui.footer.terminalHint}
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-border px-3 py-2 font-mono text-xs text-muted transition hover:border-accent hover:text-accent" />
             </div>
             <div className="reveal reveal-right">
               {hasPublicFile(profile.photoAbout) && (
@@ -514,6 +529,30 @@ export function HomePage({ lang }: { lang: Lang }) {
             </div>
           </div>
         </Section>
+
+        {/* ARTIGOS (aparece só quando há artigos; rascunhos só no localhost) */}
+        {articles.length > 0 && (
+          <Section id="artigos" kicker={ui.articles.kicker} title={<>{ui.articles.titleA}<span className="text-gradient">{ui.articles.titleB}</span></>} intro={ui.articles.intro}>
+            <div className="grid gap-6 md:grid-cols-3">
+              {articles.map((a, i) => (
+                <a key={a.slug} href={`/artigos/${a.slug}/`} style={{ transitionDelay: `${i * 90}ms` }}
+                  className="reveal group flex flex-col rounded-2xl border border-border bg-surface p-6 transition hover:-translate-y-1 hover:border-accent hover:shadow-xl hover:shadow-accent/10">
+                  <div className="flex flex-wrap items-center gap-2">
+                    {a.draft && <span className="rounded-full bg-[#f5a524]/15 px-2.5 py-0.5 text-xs font-bold text-[#b26b00]">{ui.articles.draft}</span>}
+                    {ui.articles.pt && <span className="rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-semibold text-accent">{ui.articles.pt}</span>}
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted">{a.tags.slice(0, 2).join(" · ")}</span>
+                  </div>
+                  <h3 className="mt-3 text-lg font-bold leading-snug transition group-hover:text-accent">{a.title}</h3>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{a.description}</p>
+                  <p className="mt-5 flex items-center justify-between text-sm">
+                    <span className="text-muted">{a.minutes} {ui.articles.min}</span>
+                    <span className="link-arrow font-semibold text-accent">{ui.articles.read} <span aria-hidden>→</span></span>
+                  </p>
+                </a>
+              ))}
+            </div>
+          </Section>
+        )}
 
         {/* CONTATO */}
         <section id="contato" className="px-4 py-24 sm:px-6">

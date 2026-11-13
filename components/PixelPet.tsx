@@ -258,13 +258,17 @@ export function PixelPet({ t }: { t: UI["pet"] }) {
       last = now;
       raf = requestAnimationFrame(loop);
     };
-    raf = requestAnimationFrame((t) => { last = t; loop(t); });
+    const start = () => { raf = requestAnimationFrame((t) => { last = t; loop(t); }); };
+    let startTimer = 0;
+    if (document.readyState === "complete") startTimer = window.setTimeout(start, 1200);
+    else window.addEventListener("load", () => { startTimer = window.setTimeout(start, 1200); }, { once: true });
 
     const onResize = () => { resize(); dx = Math.min(dx, rightLimit); draw(); };
     window.addEventListener("resize", onResize);
 
     return () => {
       cancelAnimationFrame(raf);
+      window.clearTimeout(startTimer);
       themeObs.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", onScroll);

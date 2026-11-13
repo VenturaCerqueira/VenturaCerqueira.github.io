@@ -47,7 +47,7 @@ export const profile = {
   // Coloque o PDF do currículo em /public com este nome.
   resumePath: "/curriculo-anderson-ventura.pdf",
   // Coloque sua foto em /public com este nome (quadrada ou retrato, min. 800px). Sem o arquivo, aparece um avatar com iniciais.
-  photo: "/foto-anderson.jpg",
+  photo: "/foto-anderson.webp",
   // Opcional: segunda foto (ex.: palestrando, mentoria) para a seção Sobre.
   photoAbout: "/foto-anderson-2.jpg",
 };

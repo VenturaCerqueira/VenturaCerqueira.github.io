@@ -3,6 +3,7 @@ import { NavIcon } from "@/components/NavIcon";
 import { Flag } from "@/components/Flag";
 import { LocalClock } from "@/components/LocalClock";
 import { PetToggle } from "@/components/PixelPet";
+import { TerminalTrigger } from "@/components/Terminal";
 import { LOCALES } from "@/data/i18n";
 import type { Content } from "@/data/content";
 
@@ -130,6 +131,7 @@ export function Footer({ t }: { t: Content }) {
           <p>© {new Date().getFullYear()} {profile.name} · {company.name} (MEI). {f.rights}</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <span className="flex items-center gap-1.5"><NavIcon name="code" size={13} /> {f.builtWith}</span>
+            <TerminalTrigger label={`>_ ${f.terminal}`} className="font-mono underline decoration-dotted underline-offset-4 transition hover:text-accent" />
             <PetToggle label={ui.pet.toggle} />
             <a href="#inicio" className="group/l inline-flex items-center gap-1 font-semibold text-accent">
               {ui.backToTop}

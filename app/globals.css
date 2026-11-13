@@ -107,7 +107,7 @@ main { overflow-x: clip; }
 
 /* ===== Blobs do hero ===== */
 @keyframes blob { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(40px,-30px) scale(1.1); } 66% { transform: translate(-30px,20px) scale(.95); } }
-.blob { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: .35; animation: blob 18s ease-in-out infinite; }
+.blob { position: absolute; border-radius: 9999px; filter: blur(70px); opacity: .35; animation: blob 18s ease-in-out infinite; will-change: transform; pointer-events: none; }
 
 /* ===== Moldura girando da foto ===== */
 @property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
@@ -319,3 +319,26 @@ main { overflow-x: clip; }
 .case-panel:not([hidden]) .case-step:nth-child(3) { animation-delay: .16s; }
 .case-panel:not([hidden]) .case-step:nth-child(4) { animation-delay: .24s; }
 @keyframes case-in { from { opacity: 0; transform: translateY(10px); } }
+
+/* ===== Desempenho: seções fora da tela não animam ===== */
+.offscreen *, .offscreen *::before, .offscreen *::after { animation-play-state: paused !important; }
+
+/* terminal */
+.term-in { animation: pop-in .22s ease-out; }
+
+/* ===== Artigos (Markdown) ===== */
+.prose-av { font-size: 1.05rem; line-height: 1.8; color: var(--text); }
+.prose-av > * + * { margin-top: 1.1em; }
+.prose-av h2 { margin-top: 2.2em; font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; }
+.prose-av h3 { margin-top: 1.8em; font-size: 1.2rem; font-weight: 700; }
+.prose-av p, .prose-av li { color: color-mix(in srgb, var(--text) 85%, var(--muted)); }
+.prose-av a { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.prose-av ul, .prose-av ol { padding-left: 1.4em; }
+.prose-av ul { list-style: disc; } .prose-av ol { list-style: decimal; }
+.prose-av li + li { margin-top: .4em; }
+.prose-av li::marker { color: var(--accent); }
+.prose-av strong { color: var(--text); font-weight: 700; }
+.prose-av code { font-family: ui-monospace, monospace; font-size: .88em; background: var(--accent-soft); color: var(--accent); padding: .1em .4em; border-radius: 6px; }
+.prose-av pre { background: #0f1222; color: #e6edf3; padding: 1.1rem 1.25rem; border-radius: 14px; overflow-x: auto; font-size: .88rem; line-height: 1.6; }
+.prose-av pre code { background: none; color: inherit; padding: 0; }
+.prose-av blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--muted); }
