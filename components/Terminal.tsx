@@ -86,9 +86,9 @@ const ALIAS: Record<string, string> = {
 
 const PATHS: Record<string, string> = { pt: "/", en: "/en/", es: "/es/" };
 
-export function Terminal({ data }: { data: TerminalData }) {
+export function Terminal({ data, startOpen = false }: { data: TerminalData; startOpen?: boolean }) {
   const t = T[data.lang];
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(startOpen);
   const [lines, setLines] = useState<Line[]>([]);
   const [input, setInput] = useState("");
   const [hist, setHist] = useState<string[]>([]);
@@ -261,14 +261,5 @@ export function Terminal({ data }: { data: TerminalData }) {
       </div>
     </div>,
     document.body,
-  );
-}
-
-/** Botão/link que abre o terminal. */
-export function TerminalTrigger({ label, className = "" }: { label: string; className?: string }) {
-  return (
-    <button type="button" onClick={() => window.dispatchEvent(new Event("terminal:open"))} className={className}>
-      {label}
-    </button>
   );
 }

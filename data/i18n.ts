@@ -14,7 +14,7 @@ const pt = {
   available: "Disponível · início imediato",
   roleTitle: "Analista de Desenvolvimento",
   levelBadge: "Pleno",
-  heroTags: ["Backend", "Automação", "Inteligência Artificial"],
+  heroTags: ["Full stack", "Backend", "Automação", "Inteligência Artificial"],
   heroLead: "Construo sistemas que",
   heroWords: ["automatizam processos", "integram IA", "rodam em produção", "integram dados"],
   heroText:
@@ -38,6 +38,7 @@ const pt = {
   projIntro: "Clique em qualquer capa para abrir o sistema no ar.",
   osKicker: "Open source",
   osTitle: "APIs, automações e extração de dados",
+  filters: { all: "Todos", gestao: "Gestão pública", produto: "Produtos e sites", design: "Design de UI", opensource: "Open source", label: "Filtrar projetos" },
   cases: {
     kicker: "Estudos de caso", titleA: "Como eu resolvo ", titleB: "problemas reais",
     intro: "Três projetos em detalhe: o contexto, o desafio, o que eu fiz e o resultado.",
@@ -83,7 +84,7 @@ const pt = {
   educationTitle: "Formação",
   aboutCta: "Vamos conversar",
   contactTitle: "Tem uma vaga de Dev Pleno ou Full stack? Vamos conversar.",
-  contactText: "Backend, automação e IA aplicada. Respondo rápido pelo WhatsApp ou e-mail.",
+  contactText: "Full stack, backend, automação e IA aplicada. Respondo rápido pelo WhatsApp ou e-mail.",
   hiring: {
     title: "O que estou buscando",
     role: "Cargo", roleV: "Full stack · Análise e desenvolvimento de sistemas",
@@ -98,7 +99,7 @@ const pt = {
   emailLabel: "E-mail",
   companySuffix: "(empresa)",
   whatsappAria: "Conversar no WhatsApp",
-  footer: { tagline: "Backend, automação e IA aplicada para sistemas que rodam em produção.", nav: "Navegação", projects: "Projetos", contact: "Contato", language: "Idioma", localTime: "Horário em Salvador", terminal: "Abrir o terminal", terminalHint: "Dica: aperte ` para abrir o terminal do portfólio", builtWith: "Feito com Next.js e Tailwind CSS", rights: "Todos os direitos reservados." },
+  footer: { tagline: "Full stack, backend, automação e IA aplicada para sistemas que rodam em produção.", nav: "Navegação", projects: "Projetos", contact: "Contato", language: "Idioma", localTime: "Horário em Salvador", terminal: "Abrir o terminal", terminalHint: "Dica: aperte ` para abrir o terminal do portfólio", builtWith: "Feito com Next.js e Tailwind CSS", rights: "Todos os direitos reservados." },
   dots: { inicio: "Início", projetos: "Projetos", casos: "Casos", ia: "IA", nivel: "Nível", devtis: "DevTI's", experiencia: "Experiência", stack: "Stack", sobre: "Sobre", contato: "Contato" },
   nav: {
     projects: "Projetos",
@@ -144,7 +145,7 @@ const en: UI = {
   available: "Available · can start immediately",
   roleTitle: "Software Developer",
   levelBadge: "Mid-Level",
-  heroTags: ["Backend", "Automation", "Artificial Intelligence"],
+  heroTags: ["Full stack", "Backend", "Automation", "Artificial Intelligence"],
   heroLead: "I build systems that",
   heroWords: ["automate processes", "integrate AI", "run in production", "connect data"],
   heroText:
@@ -168,6 +169,7 @@ const en: UI = {
   projIntro: "Click any cover to open the live system.",
   osKicker: "Open source",
   osTitle: "APIs, automation and data extraction",
+  filters: { all: "All", gestao: "Public sector", produto: "Products and websites", design: "UI design", opensource: "Open source", label: "Filter projects" },
   cases: {
     kicker: "Case studies", titleA: "How I solve ", titleB: "real problems",
     intro: "Three projects in detail: the context, the challenge, what I did and the outcome.",
@@ -213,7 +215,7 @@ const en: UI = {
   educationTitle: "Education",
   aboutCta: "Let's talk",
   contactTitle: "Hiring a mid-level or full stack developer? Let's talk.",
-  contactText: "Backend, automation and applied AI. I reply quickly on WhatsApp or by email.",
+  contactText: "Full stack, backend, automation and applied AI. I reply quickly on WhatsApp or by email.",
   hiring: {
     title: "What I'm looking for",
     role: "Role", roleV: "Full stack · Systems analysis and development",
@@ -228,7 +230,7 @@ const en: UI = {
   emailLabel: "Email",
   companySuffix: "(company)",
   whatsappAria: "Chat on WhatsApp",
-  footer: { tagline: "Backend, automation and applied AI for systems that run in production.", nav: "Navigation", projects: "Projects", contact: "Contact", language: "Language", localTime: "Local time in Salvador", terminal: "Open the terminal", terminalHint: "Tip: press ` to open the portfolio terminal", builtWith: "Built with Next.js and Tailwind CSS", rights: "All rights reserved." },
+  footer: { tagline: "Full stack, backend, automation and applied AI for systems that run in production.", nav: "Navigation", projects: "Projects", contact: "Contact", language: "Language", localTime: "Local time in Salvador", terminal: "Open the terminal", terminalHint: "Tip: press ` to open the portfolio terminal", builtWith: "Built with Next.js and Tailwind CSS", rights: "All rights reserved." },
   dots: { inicio: "Home", projetos: "Projects", casos: "Cases", ia: "AI", nivel: "Level", devtis: "DevTI's", experiencia: "Experience", stack: "Stack", sobre: "About", contato: "Contact" },
   nav: {
     projects: "Projects",
@@ -278,7 +280,7 @@ const es: UI = {
   available: "Disponible · incorporación inmediata",
   roleTitle: "Analista de Desarrollo",
   levelBadge: "Semi Senior",
-  heroTags: ["Backend", "Automatización", "Inteligencia Artificial"],
+  heroTags: ["Full stack", "Backend", "Automatización", "Inteligencia Artificial"],
   heroLead: "Construyo sistemas que",
   heroWords: ["automatizan procesos", "integran IA", "funcionan en producción", "integran datos"],
   heroText:
@@ -302,6 +304,7 @@ const es: UI = {
   projIntro: "Haz clic en cualquier portada para abrir el sistema en línea.",
   osKicker: "Código abierto",
   osTitle: "APIs, automatización y extracción de datos",
+  filters: { all: "Todos", gestao: "Sector público", produto: "Productos y sitios", design: "Diseño de UI", opensource: "Código abierto", label: "Filtrar proyectos" },
   cases: {
     kicker: "Casos de estudio", titleA: "Cómo resuelvo ", titleB: "problemas reales",
     intro: "Tres proyectos en detalle: el contexto, el desafío, lo que hice y el resultado.",
@@ -347,7 +350,7 @@ const es: UI = {
   educationTitle: "Formación",
   aboutCta: "Hablemos",
   contactTitle: "¿Tienes una vacante para desarrollador semi senior o full stack? Hablemos.",
-  contactText: "Backend, automatización e IA aplicada. Respondo rápido por WhatsApp o correo electrónico.",
+  contactText: "Full stack, backend, automatización e IA aplicada. Respondo rápido por WhatsApp o correo electrónico.",
   hiring: {
     title: "Lo que estoy buscando",
     role: "Cargo", roleV: "Full stack · Análisis y desarrollo de sistemas",
@@ -362,7 +365,7 @@ const es: UI = {
   emailLabel: "Correo",
   companySuffix: "(empresa)",
   whatsappAria: "Chatear por WhatsApp",
-  footer: { tagline: "Backend, automatización e IA aplicada para sistemas que funcionan en producción.", nav: "Navegación", projects: "Proyectos", contact: "Contacto", language: "Idioma", localTime: "Hora local en Salvador", terminal: "Abrir la terminal", terminalHint: "Tip: presiona ` para abrir la terminal del portafolio", builtWith: "Hecho con Next.js y Tailwind CSS", rights: "Todos los derechos reservados." },
+  footer: { tagline: "Full stack, backend, automatización e IA aplicada para sistemas que funcionan en producción.", nav: "Navegación", projects: "Proyectos", contact: "Contacto", language: "Idioma", localTime: "Hora local en Salvador", terminal: "Abrir la terminal", terminalHint: "Tip: presiona ` para abrir la terminal del portafolio", builtWith: "Hecho con Next.js y Tailwind CSS", rights: "Todos los derechos reservados." },
   dots: { inicio: "Inicio", projetos: "Proyectos", casos: "Casos", ia: "IA", nivel: "Nivel", devtis: "DevTI's", experiencia: "Experiencia", stack: "Stack", sobre: "Sobre mí", contato: "Contacto" },
   nav: {
     projects: "Proyectos",

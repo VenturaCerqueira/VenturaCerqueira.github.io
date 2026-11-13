@@ -371,3 +371,40 @@ main { overflow-x: clip; }
 .prose-av pre { background: #0f1222; color: #e6edf3; padding: 1.1rem 1.25rem; border-radius: 14px; overflow-x: auto; font-size: .88rem; line-height: 1.6; }
 .prose-av pre code { background: none; color: inherit; padding: 0; }
 .prose-av blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--muted); }
+
+/* ===== Filtro de projetos (o wrapper #projetos recebe data-filter) ===== */
+[data-filter="gestao"] [data-cats]:not([data-cats~="gestao"]),
+[data-filter="produto"] [data-cats]:not([data-cats~="produto"]),
+[data-filter="design"] [data-cats]:not([data-cats~="design"]),
+[data-filter="opensource"] [data-cats]:not([data-cats~="opensource"]) { display: none; }
+[data-filter="gestao"] .os-block, [data-filter="produto"] .os-block, [data-filter="design"] .os-block,
+[data-filter="opensource"] .featured-grid { display: none; }
+[data-filter="opensource"] #open-source { margin-top: 0; }
+[data-filter]:not([data-filter="all"]) .featured-grid > * { grid-column-start: auto !important; }
+[data-filter] [data-cats] { animation: filter-in .35s ease-out; }
+@keyframes filter-in { from { opacity: 0; transform: translateY(8px) scale(.98); } }
+
+/* sugestão de idioma */
+.lang-suggest { animation: pop-in .35s cubic-bezier(.2,.8,.2,1); }
+
+/* ===== Tema escuro: fundos de botão/destaque mais fortes para o texto branco ter contraste (WCAG AA) =====
+   O roxo claro do tema escuro continua nos textos; só os fundos usam os tons abaixo. */
+:root[data-theme="dark"] { --accent-bg: #6450ec; --accent-2-bg: #3567d6; }
+:root[data-theme="dark"] .bg-accent { background-color: var(--accent-bg); }
+:root[data-theme="dark"] .from-accent { --tw-gradient-from: var(--accent-bg); }
+:root[data-theme="dark"] .to-accent { --tw-gradient-to: var(--accent-bg); }
+:root[data-theme="dark"] .from-accent-2 { --tw-gradient-from: var(--accent-2-bg); }
+:root[data-theme="dark"] .to-accent-2 { --tw-gradient-to: var(--accent-2-bg); }
+:root[data-theme="dark"] .via-accent-2 { --tw-gradient-via: var(--accent-2-bg); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --accent-bg: #6450ec; --accent-2-bg: #3567d6; }
+  :root:not([data-theme="light"]) .bg-accent { background-color: var(--accent-bg); }
+  :root:not([data-theme="light"]) .from-accent { --tw-gradient-from: var(--accent-bg); }
+  :root:not([data-theme="light"]) .to-accent { --tw-gradient-to: var(--accent-bg); }
+  :root:not([data-theme="light"]) .from-accent-2 { --tw-gradient-from: var(--accent-2-bg); }
+  :root:not([data-theme="light"]) .to-accent-2 { --tw-gradient-to: var(--accent-2-bg); }
+  :root:not([data-theme="light"]) .via-accent-2 { --tw-gradient-via: var(--accent-2-bg); }
+}
+/* botões brancos com texto roxo: no tema escuro o texto usa o roxo forte */
+:root[data-theme="dark"] .bg-white.text-accent { color: var(--accent-bg); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .bg-white.text-accent { color: var(--accent-bg); } }

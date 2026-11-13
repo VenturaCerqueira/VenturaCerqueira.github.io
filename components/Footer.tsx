@@ -2,8 +2,7 @@ import { SocialIcon } from "@/components/Social";
 import { NavIcon } from "@/components/NavIcon";
 import { Flag } from "@/components/Flag";
 import { LocalClock } from "@/components/LocalClock";
-import { PetToggle } from "@/components/PixelPet";
-import { TerminalTrigger } from "@/components/Terminal";
+import { PetToggle, TerminalTrigger } from "@/components/Triggers";
 import { LOCALES } from "@/data/i18n";
 import type { Content } from "@/data/content";
 

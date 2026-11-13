@@ -11,6 +11,7 @@ export type Project = {
   links: Link[];
   tag?: string;
   cover?: string; // print do sistema em /public/projects
+  cats?: ("gestao" | "produto" | "design" | "opensource")[]; // filtros da seção de projetos
 };
 
 export type Job = {
@@ -32,7 +33,7 @@ export const profile = {
   name: "Anderson Ventura Cerqueira",
   shortName: "Anderson Ventura",
   role: "Analista de Desenvolvimento Pleno",
-  headline: "Backend · Automação · Inteligência Artificial",
+  headline: "Full stack · Backend · Automação · Inteligência Artificial",
   location: "Candeias, BA, Brasil",
   summary:
     "Analista de Sistemas com mais de 5 anos de experiência em tecnologia, com foco em desenvolvimento backend e engenharia de software. Atuação sólida em automação de processos, integração de sistemas e análise de requisitos, com Python, Node.js, SQL e APIs REST em ambientes corporativos. Vivência com Docker, bancos relacionais, times ágeis e documentação técnica. Também atuo como mentor tecnológico, apoiando equipes no desenvolvimento de projetos inovadores.",
@@ -86,7 +87,7 @@ export const services: { icon: IconName; title: string; text: string }[] = [
 export const recruiterSummary: { label: string; value: string; icon: NavIconName }[] = [
   { label: "Nível", value: "Pleno", icon: "trend" },
   { label: "Experiência", value: "5+ anos em TI · 3+ em desenvolvimento", icon: "clock" },
-  { label: "Stack principal", value: "Python · Node.js · SQL · APIs REST", icon: "code" },
+  { label: "Stack principal", value: "Python · Node.js · SQL · APIs REST · JavaScript", icon: "code" },
   { label: "IA", value: "Desenvolvimento assistido e agentes de IA", icon: "sparkles" },
   { label: "Disponibilidade", value: "Remoto ou híbrido · CLT ou PJ · início imediato", icon: "pin" },
   { label: "Empresa própria", value: "DevTI's (MEI) · sistemas para empresas", icon: "building" },
@@ -139,6 +140,7 @@ export const careerSteps: { year: string; role: string; icon: NavIconName }[] = 
 export const featuredProjects: Project[] = [
   {
     title: "AgendaAI",
+    cats: ["produto"],
     cover: "/projects/agendaai.webp",
     tag: "Produto SaaS · IA",
     description:
@@ -151,6 +153,7 @@ export const featuredProjects: Project[] = [
   },
   {
     title: "e-Contrib: Gestão Tributária Municipal",
+    cats: ["gestao"],
     cover: "/projects/econtrib.webp",
     tag: "Keep Informática",
     description:
@@ -163,6 +166,7 @@ export const featuredProjects: Project[] = [
   },
   {
     title: "NFS-e: Tela de Login",
+    cats: ["gestao", "design"],
     cover: "/projects/nfse.webp",
     tag: "Design de UI",
     description:
@@ -175,6 +179,7 @@ export const featuredProjects: Project[] = [
   },
   {
     title: "Portal do Contribuinte de Iaçu",
+    cats: ["gestao"],
     cover: "/projects/iacu.webp",
     tag: "Gestão pública",
     description:
@@ -187,6 +192,7 @@ export const featuredProjects: Project[] = [
   },
   {
     title: "KeepFolha: Tela de acesso",
+    cats: ["gestao", "design"],
     cover: "/projects/keepfolha.webp",
     tag: "Redesign de UI",
     description: "Remake do design da tela de acesso do KeepFolha, sistema de folha de pagamento municipal com BI, eSocial e SIAFIC.",
@@ -195,6 +201,7 @@ export const featuredProjects: Project[] = [
   },
   {
     title: "BFT Camarão",
+    cats: ["produto"],
     cover: "/projects/bft.webp",
     tag: "Site institucional",
     description: "Site do sistema de gestão para carcinicultura (criação de camarão em bioflocos).",
@@ -206,6 +213,7 @@ export const featuredProjects: Project[] = [
   },
   {
     title: "Compras Online",
+    cats: ["gestao"],
     cover: "/projects/compras-online.webp",
     tag: "Keep Informática · Manutenção",
     description: "Sistema web de gestão de compras para prefeituras e entidades públicas, com acesso por município e entidade. Atuo na manutenção evolutiva e na correção de bugs.",
@@ -216,6 +224,7 @@ export const featuredProjects: Project[] = [
 
 export const openSource: Project[] = [
   {
+    cats: ["opensource"],
     title: "API CNAE do IBGE",
     description:
       "API que consome e formata dados da Classificação Nacional de Atividades Econômicas (IBGE), retornando classes e subclasses com códigos concatenados.",
@@ -223,6 +232,7 @@ export const openSource: Project[] = [
     links: [{ label: "GitHub", href: repo("API-CNAE-IBGE-TS") }],
   },
   {
+    cats: ["opensource"],
     title: "Scraping eSocial",
     description:
       "Extração automatizada de dados do eSocial com navegação multi-página, retomada de progresso via JSON, tolerância a falhas e exportação CSV.",
@@ -230,6 +240,7 @@ export const openSource: Project[] = [
     links: [{ label: "GitHub", href: repo("Scraping-eSocial") }],
   },
   {
+    cats: ["opensource"],
     title: "Gerador de Esquema MySQL → Markdown",
     description:
       "Conecta ao MySQL, extrai metadados de tabelas e colunas e gera documentação em Markdown. Credenciais via .env.",
@@ -237,12 +248,14 @@ export const openSource: Project[] = [
     links: [{ label: "GitHub", href: repo("Scraping-banco-relacao") }],
   },
   {
+    cats: ["opensource"],
     title: "API de Extração de Notas Fiscais",
     description: "API em Python para extração de dados de notas fiscais.",
     stack: ["Python", "API"],
     links: [{ label: "GitHub", href: repo("consulta_nota") }],
   },
   {
+    cats: ["opensource"],
     title: "Extrator de Servidores (PDF → Excel)",
     description:
       "Extrai nomes e CPFs de servidores públicos de PDFs e gera uma planilha limpa, registrando linhas fora do padrão.",
@@ -250,6 +263,7 @@ export const openSource: Project[] = [
     links: [{ label: "GitHub", href: repo("leitor-pdf") }],
   },
   {
+    cats: ["opensource"],
     title: "Busca Moeda Google",
     description: "Consulta cotação de moedas via requisição GET, retornando nome oficial, valor em reais, data e hora.",
     stack: ["Python", "Web Scraping"],

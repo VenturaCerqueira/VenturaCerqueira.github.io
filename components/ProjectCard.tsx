@@ -19,7 +19,7 @@ export function ProjectCard({ p, index = 0, ui }: { p: Project; index?: number; 
   const main = site ?? p.links[0];
 
   return (
-    <article className="reveal group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-2xl hover:shadow-accent/15"
+    <article data-cats={(p.cats ?? []).join(" ")} className="reveal group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:border-accent hover:shadow-2xl hover:shadow-accent/15"
       style={{ transitionDelay: `${(index % 3) * 90}ms` }}>
       {/* capa */}
       <a href={main.href} target="_blank" rel="noopener noreferrer" className="relative block overflow-hidden" aria-label={`${ui.card.open} ${p.title}`}>

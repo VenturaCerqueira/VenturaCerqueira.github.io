@@ -10,7 +10,7 @@ export const profile = {
   resumePath: "/resume-anderson-ventura-en.pdf",
   coverLetterPath: "/cover-letter-anderson-ventura-en.pdf",
   role: "Mid-Level Software Developer",
-  headline: "Backend · Automation · Artificial Intelligence",
+  headline: "Full stack · Backend · Automation · Artificial Intelligence",
   location: "Candeias, BA, Brazil",
   summary:
     "Systems Analyst with more than 5 years of experience in technology, focused on backend development and software engineering. Solid background in process automation, systems integration and requirements analysis, using Python, Node.js, SQL and REST APIs in corporate environments. Hands-on experience with Docker, relational databases, agile teams and technical documentation. I also work as a tech mentor, helping teams build innovative projects.",
@@ -42,7 +42,7 @@ export const services = zip(pt.services, [
 export const recruiterSummary = zip(pt.recruiterSummary, [
   { label: "Level", value: "Mid-level" },
   { label: "Experience", value: "5+ years in IT · 3+ in development" },
-  { label: "Main stack", value: "Python · Node.js · SQL · REST APIs" },
+  { label: "Main stack", value: "Python · Node.js · SQL · REST APIs · JavaScript" },
   { label: "AI", value: "AI-assisted development and AI agents" },
   { label: "Availability", value: "Remote or hybrid · CLT or contractor · immediate start" },
   { label: "Own company", value: "DevTI's (MEI) · systems for businesses" },

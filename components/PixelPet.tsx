@@ -292,13 +292,3 @@ export function PixelPet({ t }: { t: UI["pet"] }) {
     </div>
   );
 }
-
-/** Link para mostrar/ocultar o mascote (usado no rodapé). */
-export function PetToggle({ label }: { label: string }) {
-  return (
-    <button type="button" onClick={() => window.dispatchEvent(new Event("pet:toggle"))}
-      className="underline decoration-dotted underline-offset-4 transition hover:text-accent">
-      {label}
-    </button>
-  );
-}

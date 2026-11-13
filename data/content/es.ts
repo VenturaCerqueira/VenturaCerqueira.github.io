@@ -10,7 +10,7 @@ export const profile = {
   resumePath: "/cv-anderson-ventura-es.pdf",
   coverLetterPath: "/carta-presentacion-anderson-ventura-es.pdf",
   role: "Analista de Desarrollo Semi Senior",
-  headline: "Backend · Automatización · Inteligencia Artificial",
+  headline: "Full stack · Backend · Automatización · Inteligencia Artificial",
   location: "Candeias, BA, Brasil",
   summary:
     "Analista de Sistemas con más de 5 años de experiencia en tecnología, enfocado en desarrollo backend e ingeniería de software. Sólida experiencia en automatización de procesos, integración de sistemas y análisis de requisitos, con Python, Node.js, SQL y APIs REST en entornos corporativos. Experiencia con Docker, bases de datos relacionales, equipos ágiles y documentación técnica. También trabajo como mentor tecnológico, apoyando a equipos en el desarrollo de proyectos innovadores.",
@@ -42,7 +42,7 @@ export const services = zip(pt.services, [
 export const recruiterSummary = zip(pt.recruiterSummary, [
   { label: "Nivel", value: "Semi Senior" },
   { label: "Experiencia", value: "Más de 5 años en TI · más de 3 en desarrollo" },
-  { label: "Stack principal", value: "Python · Node.js · SQL · APIs REST" },
+  { label: "Stack principal", value: "Python · Node.js · SQL · APIs REST · JavaScript" },
   { label: "IA", value: "Desarrollo asistido por IA y agentes de IA" },
   { label: "Disponibilidad", value: "Remoto o híbrido · CLT o PJ · inicio inmediato" },
   { label: "Empresa propia", value: "DevTI's (MEI) · sistemas para empresas" },

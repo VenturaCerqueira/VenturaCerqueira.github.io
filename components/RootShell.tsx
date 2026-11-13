@@ -43,12 +43,36 @@ export function buildMetadata(lang: Lang): Metadata {
   };
 }
 
+// Dados estruturados (schema.org/Person): ajudam o Google a mostrar nome, cargo, foto e redes no resultado.
+function personJsonLd(lang: Lang) {
+  const { profile, company, skills, education } = getContent(lang);
+  const path = LOCALES.find((l) => l.lang === lang)!.path;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: profile.name,
+    alternateName: profile.shortName,
+    jobTitle: profile.role,
+    description: profile.summary,
+    url: new URL(path, SITE_URL).toString(),
+    image: new URL("/foto-anderson.jpg", SITE_URL).toString(),
+    email: `mailto:${profile.contacts.email}`,
+    address: { "@type": "PostalAddress", addressLocality: "Candeias", addressRegion: "BA", addressCountry: "BR" },
+    worksFor: [{ "@type": "Organization", name: "Keep Informática" }, { "@type": "Organization", name: company.name }],
+    alumniOf: education.map((e) => ({ "@type": "EducationalOrganization", name: e.school })),
+    knowsAbout: skills.flatMap((s) => s.items),
+    knowsLanguage: ["pt-BR", "en", "es"],
+    sameAs: [profile.contacts.linkedin, profile.contacts.github, profile.contacts.instagram],
+  };
+}
+
 export function RootShell({ lang, children }: { lang: Lang; children: React.ReactNode }) {
   const htmlLang = LOCALES.find((l) => l.lang === lang)!.htmlLang;
   return (
     <html lang={htmlLang} className={jakarta.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(lang)) }} />
       </head>
       <body className="font-sans antialiased">
         {children}

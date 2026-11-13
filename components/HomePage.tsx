@@ -3,7 +3,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Header } from "@/components/Header";
 import { SectionDots } from "@/components/SectionDots";
 import { BackToTop } from "@/components/BackToTop";
-import { PixelPet } from "@/components/PixelPet";
+import { LazyPixelPet, LazyTerminal } from "@/components/Lazy";
 import { SocialIcon } from "@/components/Social";
 import { NavIcon } from "@/components/NavIcon";
 import { TechIcon } from "@/components/TechIcon";
@@ -12,7 +12,9 @@ import { CodeIntro } from "@/components/CodeIntro";
 import { Footer } from "@/components/Footer";
 import { CaseStudies } from "@/components/CaseStudies";
 import { CASES } from "@/data/content/cases";
-import { Terminal, TerminalTrigger } from "@/components/Terminal";
+import { TerminalTrigger } from "@/components/Triggers";
+import { ProjectFilter } from "@/components/ProjectFilter";
+import { LangSuggest } from "@/components/LangSuggest";
 import { getArticles } from "@/lib/articles";
 import { Icon } from "@/components/Icon";
 import { CountUp, RevealObserver, Typewriter } from "@/components/Motion";
@@ -80,10 +82,11 @@ export function HomePage({ lang }: { lang: Lang }) {
       <RevealObserver />
 
       <Header t={t} />
+      <LangSuggest current={lang} />
       <SectionDots items={sectionDots} label={ui.search.groups.sections} />
       <BackToTop label={ui.backToTop} />
-      <PixelPet t={ui.pet} />
-      <Terminal data={{
+      <LazyPixelPet t={ui.pet} />
+      <LazyTerminal data={{
         lang, name: profile.name, role: profile.role, location: profile.location, summary: profile.summary,
         email: c.email, whatsapp: c.whatsappDisplay, whatsappHref: c.whatsappHref, linkedin: c.linkedin, github: c.github,
         resume: hasResume ? profile.resumePath : null,
@@ -121,8 +124,8 @@ export function HomePage({ lang }: { lang: Lang }) {
 
               <p className="reveal mt-5 flex flex-wrap gap-2 [transition-delay:140ms]">
                 {ui.heroTags.map((t, i) => (
-                  <span key={t} className={`rounded-full px-3 py-1 text-xs font-semibold ${i === 2 ? "ai-border bg-accent-soft text-accent" : "border border-border bg-surface text-muted"}`}>
-                    {i === 2 && <Icon name="sparkles" className="mr-1 inline h-3.5 w-3.5 align-[-2px]" />}{t}
+                  <span key={t} className={`rounded-full px-3 py-1 text-xs font-semibold ${i === ui.heroTags.length - 1 ? "ai-border bg-accent-soft text-accent" : "border border-border bg-surface text-muted"}`}>
+                    {i === ui.heroTags.length - 1 && <Icon name="sparkles" className="mr-1 inline h-3.5 w-3.5 align-[-2px]" />}{t}
                   </span>
                 ))}
               </p>
@@ -222,15 +225,22 @@ export function HomePage({ lang }: { lang: Lang }) {
         {/* PROJETOS */}
         <Section id="projetos" kicker={ui.projKicker} title={<>{ui.projTitleA}<span className="text-gradient">{ui.projTitleB}</span></>}
           intro={ui.projIntro}>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>*:last-child:nth-child(3n+1)]:col-start-2">
+          <ProjectFilter labels={ui.filters} counts={{
+            all: featuredProjects.length + openSource.length,
+            gestao: featuredProjects.filter((p) => p.cats?.includes("gestao")).length,
+            produto: featuredProjects.filter((p) => p.cats?.includes("produto")).length,
+            design: featuredProjects.filter((p) => p.cats?.includes("design")).length,
+            opensource: openSource.length,
+          }} />
+          <div className="featured-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>*:last-child:nth-child(3n+1)]:col-start-2">
             {featuredProjects.map((p, i) => <ProjectCard key={p.title} p={p} index={i} ui={ui} />)}
           </div>
 
-          <div id="open-source" className="reveal mx-auto mb-10 mt-20 max-w-2xl scroll-mt-28 text-center">
+          <div id="open-source" className="os-block reveal mx-auto mb-10 mt-20 max-w-2xl scroll-mt-28 text-center">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent">{ui.osKicker}</p>
             <h3 className="text-2xl font-extrabold sm:text-3xl">{ui.osTitle}</h3>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="os-block grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {openSource.map((p, i) => <ProjectCard key={p.title} p={p} index={i} ui={ui} />)}
           </div>
           <div className="mt-10 text-center">
