@@ -126,7 +126,7 @@ export function HomePage({ lang }: { lang: Lang }) {
                 ))}
               </p>
 
-              <p className="reveal mt-6 text-2xl font-bold leading-snug tracking-tight [transition-delay:200ms] sm:text-3xl">
+              <p className="reveal mt-6 min-h-[2.75em] text-2xl font-bold leading-snug tracking-tight [transition-delay:200ms] sm:text-3xl">
                 {ui.heroLead}{" "}
                 <span className="relative inline-block">
                   <Typewriter className="text-gradient" words={ui.heroWords} />
