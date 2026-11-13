@@ -320,8 +320,37 @@ main { overflow-x: clip; }
 .case-panel:not([hidden]) .case-step:nth-child(4) { animation-delay: .24s; }
 @keyframes case-in { from { opacity: 0; transform: translateY(10px); } }
 
-/* ===== Desempenho: o navegador não desenha nem anima seções fora da tela (nativo, sem custo de JS) ===== */
-main > section:not(:first-child), footer { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+/* ===== Desempenho: animações contínuas pausam quando a seção sai da tela =====
+   Seletores específicos (não "*"): o navegador só avalia a regra nos elementos que animam. */
+.offscreen .marquee,
+.offscreen .float,
+.offscreen .blob,
+.offscreen .ring,
+.offscreen .gen-grid,
+.offscreen .caret,
+.offscreen .caret-block,
+.offscreen .ai-border::before,
+.offscreen .xp-promo,
+.offscreen .edu-progress,
+.offscreen .footer-line,
+.offscreen .arrow-nudge,
+.offscreen .cta-shine::after,
+.offscreen .animate-ping,
+.offscreen .animate-pulse,
+.offscreen .dot,
+.offscreen .spin,
+.offscreen .layer,
+.offscreen .bar,
+.offscreen .stroke-draw,
+.offscreen .pen,
+.offscreen .needle,
+.offscreen .bounce,
+.offscreen .spk,
+.offscreen .wire,
+.offscreen .core,
+.offscreen .eyes,
+.offscreen .antenna,
+.offscreen .back { animation-play-state: paused; }
 
 /* terminal */
 .term-in { animation: pop-in .22s ease-out; }

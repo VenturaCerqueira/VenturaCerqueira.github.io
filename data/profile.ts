@@ -46,6 +46,8 @@ export const profile = {
   },
   // Coloque o PDF do currículo em /public com este nome.
   resumePath: "/curriculo-anderson-ventura.pdf",
+  // Link de agendamento (ex.: "https://cal.com/seu-usuario/30min"). Vazio = botão oculto.
+  calLink: "",
   // Coloque sua foto em /public com este nome (quadrada ou retrato, min. 800px). Sem o arquivo, aparece um avatar com iniciais.
   photo: "/foto-anderson.webp",
   // Opcional: segunda foto (ex.: palestrando, mentoria) para a seção Sobre.
@@ -85,7 +87,7 @@ export const recruiterSummary: { label: string; value: string; icon: NavIconName
   { label: "Experiência", value: "5+ anos em TI · 3+ em desenvolvimento", icon: "clock" },
   { label: "Stack principal", value: "Python · Node.js · SQL · APIs REST", icon: "code" },
   { label: "IA", value: "Desenvolvimento assistido e agentes de IA", icon: "sparkles" },
-  { label: "Modelo", value: "Remoto ou híbrido · Salvador/BA", icon: "pin" },
+  { label: "Disponibilidade", value: "Remoto ou híbrido · CLT ou PJ · início imediato", icon: "pin" },
   { label: "Empresa própria", value: "DevTI's (MEI) · sistemas para empresas", icon: "building" },
 ];
 

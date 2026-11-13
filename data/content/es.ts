@@ -43,7 +43,7 @@ export const recruiterSummary = zip(pt.recruiterSummary, [
   { label: "Experiencia", value: "Más de 5 años en TI · más de 3 en desarrollo" },
   { label: "Stack principal", value: "Python · Node.js · SQL · APIs REST" },
   { label: "IA", value: "Desarrollo asistido por IA y agentes de IA" },
-  { label: "Modalidad", value: "Remoto o híbrido · Salvador, Brasil" },
+  { label: "Disponibilidad", value: "Remoto o híbrido · CLT o PJ · inicio inmediato" },
   { label: "Empresa propia", value: "DevTI's (MEI) · sistemas para empresas" },
 ]);
 

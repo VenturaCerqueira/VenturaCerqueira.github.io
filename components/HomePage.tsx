@@ -561,7 +561,26 @@ export function HomePage({ lang }: { lang: Lang }) {
               <div>
                 <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">{ui.contactTitle}</h2>
                 <p className="mt-4 text-white/85">{ui.contactText}</p>
+                <div className="mt-6 rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur">
+                  <p className="text-[11px] font-bold uppercase tracking-widest text-white/75">{ui.hiring.title}</p>
+                  <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+                    {([
+                      [ui.hiring.role, ui.hiring.roleV], [ui.hiring.contract, ui.hiring.contractV],
+                      [ui.hiring.mode, ui.hiring.modeV], [ui.hiring.start, ui.hiring.startV],
+                    ] as const).map(([k, v]) => (
+                      <div key={k}>
+                        <dt className="text-xs text-white/70">{k}</dt>
+                        <dd className="font-semibold">{v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
                 <div className="mt-8 flex flex-wrap gap-3">
+                  {profile.calLink && (
+                    <a href={profile.calLink} {...ext} data-goatcounter-click="agendar-conversa" className="group inline-flex items-center gap-2 rounded-full bg-[#0f1222] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5">
+                      <NavIcon name="clock" size={16} className="text-[#5eead4]" /> {ui.hiring.schedule}
+                    </a>
+                  )}
                   <a href={c.whatsappHref} {...ext} data-goatcounter-click="whatsapp-contato" className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-accent shadow-lg transition hover:-translate-y-0.5"><SocialIcon name="whatsapp" className="text-[#25D366] transition group-hover:scale-110" /> {ui.contactWhatsapp} <span className="arrow-nudge" aria-hidden>→</span></a>
                   <a href={`mailto:${c.email}`} className="group inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10"><SocialIcon name="mail" className="transition group-hover:scale-110" /> {ui.contactEmail}</a>
                   {hasResume && <a href={profile.resumePath} download data-goatcounter-click="curriculo-contato" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold transition hover:bg-white/10">{ui.contactCv}</a>}

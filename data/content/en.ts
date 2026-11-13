@@ -43,7 +43,7 @@ export const recruiterSummary = zip(pt.recruiterSummary, [
   { label: "Experience", value: "5+ years in IT · 3+ in development" },
   { label: "Main stack", value: "Python · Node.js · SQL · REST APIs" },
   { label: "AI", value: "AI-assisted development and AI agents" },
-  { label: "Work model", value: "Remote or hybrid · Salvador, Brazil" },
+  { label: "Availability", value: "Remote or hybrid · CLT or contractor · immediate start" },
   { label: "Own company", value: "DevTI's (MEI) · systems for businesses" },
 ]);
 
