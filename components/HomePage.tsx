@@ -182,12 +182,6 @@ export function HomePage({ lang }: { lang: Lang }) {
                   <Photo src={profile.photo} alt={`${ui.photoAlt} ${profile.shortName}`} initials="AV" className="object-[50%_25%] transition duration-700 hover:scale-105" />
                 </div>
               </div>
-              <div className="float absolute -left-10 bottom-16 rounded-xl border border-border bg-surface px-4 py-3 shadow-xl">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-muted">{ui.inProduction}</p>
-                <p className="flex items-center gap-1.5 text-sm font-bold">
-                  <Icon name="check" className="h-4 w-4 text-teal" /> {ui.systemsLive}
-                </p>
-              </div>
               <div className="mt-5 grid grid-cols-3 gap-2 text-center">
                 {highlights.map((h) => (
                   <div key={h.label} className="rounded-xl border border-border bg-surface/90 px-2 py-2 backdrop-blur">
